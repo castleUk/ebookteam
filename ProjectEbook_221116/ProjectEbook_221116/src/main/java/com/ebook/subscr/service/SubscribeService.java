@@ -1,8 +1,8 @@
-package com.ebook.manage.service;
+package com.ebook.subscr.service;
 
 import java.util.List;
 
-import com.ebook.manage.vo.SubscrVo;
+import com.ebook.subscr.vo.SubscrVo;
 
 public interface SubscribeService {
 	

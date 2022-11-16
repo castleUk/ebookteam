@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ebook.manage.service.MenuService;
 import com.ebook.manage.service.RequestService;
-import com.ebook.manage.service.SubscribeService;
+import com.ebook.subscr.service.SubscribeService;
 import com.ebook.manage.service.UserService;
 import com.ebook.manage.vo.MenuVo;
 import com.ebook.manage.vo.RequestVo;
-import com.ebook.manage.vo.SubscrVo;
+import com.ebook.subscr.vo.SubscrVo;
 import com.ebook.manage.vo.UserVo;
 
 @Controller()

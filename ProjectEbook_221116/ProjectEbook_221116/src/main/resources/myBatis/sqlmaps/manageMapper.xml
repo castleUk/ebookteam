@@ -87,7 +87,7 @@
   </select>
 	
 	<!-- 구독 관리 : 목록 -->
-  <select id="SubscrList" resultType="com.ebook.manage.vo.SubscrVo">
+  <select id="SubscrList" resultType="com.ebook.subscr.vo.SubscrVo">
 		SELECT SM.SUBSCRIBEKEY, U.USERID, U.USERNAME, U.JOINDATE, SM.SUBDATE, ADD_MONTHS(EXDATE, 1) EXDATE, SM.PAYMENT,
 		CONCAT(SUBSTR(CARDNUM,1,4),'-') || CONCAT(SUBSTR(CARDNUM,5,4),'-') || CONCAT(SUBSTR(CARDNUM,9,4),'') AS CARDNUM
 		FROM SUBSCRIBEMANAGE SM, EUSER U
@@ -96,7 +96,7 @@
   </select>
   
   <!-- 구독 관리 : 정보보기 -->
-  <select id="SubscrView" resultType="com.ebook.manage.vo.SubscrVo">
+  <select id="SubscrView" resultType="com.ebook.subscr.vo.SubscrVo">
 		SELECT SM.SUBSCRIBEKEY, U.USERID, U.USERNAME, U.JOINDATE, SM.SUBDATE, ADD_MONTHS(EXDATE, 1) EXDATE, SM.PAYMENT,
 		CONCAT(SUBSTR(CARDNUM,1,4),'-') || CONCAT(SUBSTR(CARDNUM,5,4),'-') || CONCAT(SUBSTR(CARDNUM,9,4),'') AS CARDNUM
 		FROM SUBSCRIBEMANAGE SM, EUSER U

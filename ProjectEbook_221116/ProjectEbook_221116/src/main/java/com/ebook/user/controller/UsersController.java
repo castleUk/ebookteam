@@ -37,6 +37,7 @@ public class UsersController {
         log.info(usersVO);
         if (usersVO != null) {
             session.setAttribute("user", usersVO);
+            log.info(session);
 
         } else {
             return "redirect:../error";

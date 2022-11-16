@@ -17,8 +17,6 @@ import java.time.LocalDateTime;
 @Entity
 public class UsersVO {
 
-    @Column(unique = true)
-    @Size(min = 2, max = 15)
     @Id
     private String userId;
     private String userIdx;

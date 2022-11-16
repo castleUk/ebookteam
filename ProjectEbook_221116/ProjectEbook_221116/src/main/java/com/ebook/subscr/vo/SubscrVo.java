@@ -1,4 +1,4 @@
-package com.ebook.manage.vo;
+package com.ebook.subscr.vo;
 
 public class SubscrVo {
   private int subscribeKey;

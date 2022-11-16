@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+mod<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,10 +10,9 @@
 	<link rel="stylesheet" href="/css/common.css" />
 	<link rel="stylesheet" href="/css/custom.css" />
 	<link rel="stylesheet" href="/css/media.css" />
-	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script src="/js/common.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script type="text/javascript">
-
 	</script>
 </head>
 <body>
@@ -34,23 +33,23 @@
 								<table class="table">
 									<tr>
 										<th>아이디</th>
-										<td>${subscr.userId}</td>
+										<td>${info.userId}</td>
 									</tr>
 									<tr>
 										<th>결제방법</th>
-										<td>${subscr.payMent}</td>
+										<td>${info.payMent}</td>
 									</tr>
 									<tr>
 										<th>카드번호</th>
-										<td>${subscr.cardNum}</td>
+										<td>${info.cardNum}</td>
 									</tr>
 									<tr>
 										<th>구독일</th>
-										<td>${subscr.subDate}</td>
+										<td>${info.subDate}</td>
 									</tr>
 									<tr>
 										<th>만료일</th>
-										<td>${subscr.exDate}</td>
+										<td>${info.exDate}</td>
 									</tr>
 								</table>
 								<div class="btn-group">

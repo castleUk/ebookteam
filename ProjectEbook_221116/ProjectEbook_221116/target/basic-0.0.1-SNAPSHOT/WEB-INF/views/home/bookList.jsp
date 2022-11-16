@@ -8,30 +8,25 @@
 		</div>
 		<div class="content-body">
 
-<%-- 							<c:forEach var="best" items="${ bestlist.items }">
-								<p>${best}</p>
-								<p>${best.title}</p>
-								<p><img src="${best.image}"/></p>
-							</c:forEach> --%>
 			<div class="row">
 				<a class="book" href="/book/list">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936438838.jpg" class="item-img"/>
 					</div>
 				</a>
 				<a class="book" href="/book/list">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791190538510.jpg" class="item-img"/>
 					</div>
 				</a>
 				<a class="book" href="/book/list">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
 					</div>
 				</a>
 				<a class="book" href="/book/list">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791164064748.jpg" class="item-img"/>
 					</div>
 				</a>
 			</div>

@@ -1,8 +1,8 @@
-package com.ebook.manage.dao;
+package com.ebook.subscr.dao;
 
 import java.util.List;
 
-import com.ebook.manage.vo.SubscrVo;
+import com.ebook.subscr.vo.SubscrVo;
 
 public interface SubscrDao {
 

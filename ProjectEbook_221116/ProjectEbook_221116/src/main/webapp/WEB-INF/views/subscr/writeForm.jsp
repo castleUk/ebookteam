@@ -28,11 +28,11 @@
                     <h2>구독 신청</h2>
                 </div>
                 <div class="content-body">
-                    <form class="form-table" action="">
+                    <form class="form-table" method="post" action="/subscr/writeForm">
                         <table class="table">
                             <tr>
                                 <th>아이디</th>
-                                <td><input type="text" name="userId" placeholder="아이디"/></td>
+                                <td><input type="text" name="userId" placeholder="아이디" value="${userId}" readonly/></td>
                             </tr>
                             <tr>
                                 <th>결제 방법</th>

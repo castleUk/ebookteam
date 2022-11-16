@@ -1,13 +1,12 @@
-package com.ebook.manage.service.impl;
+package com.ebook.subscr.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ebook.manage.dao.SubscrDao;
-import com.ebook.manage.service.SubscribeService;
-import com.ebook.manage.vo.SubscrVo;
+import com.ebook.subscr.dao.SubscrDao;
+import com.ebook.subscr.vo.SubscrVo;
 
 @Service("subscribeService")
 public class SubsctServiceImpl implements SubscribeService {

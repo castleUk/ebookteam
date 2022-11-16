@@ -1,15 +1,10 @@
-/**
- * 
- */
-
 $(function(){
 	
 	// 상단 메뉴
 	$('#btnMenu').on('click', function(){
 		$('#headMenu').toggle('slow');
 	});
-	
-	
+
 	// 로그인
 	$('#btnLogin').on('click',function(){
 	  $('#Login').fadeIn();
@@ -37,6 +32,10 @@ $(function(){
 	$('#btnClose').on('click',function(){
 	  $('#Login').fadeOut();
 	});
+
+
+
+
 	
 	// 회원가입
 	$('#btnRegister').on('click',function(){
@@ -57,13 +56,15 @@ $(function(){
 	// });
 
 
-
-
-
-
-
-
-
+	// //책 상세보기 모달
+	// $('#detailbtn').on('click', function (){
+	// 	$('#bookDetail').fadeIn();
+	// })
+	//
+	// //책 상세보기 모달 닫기
+	// $('modalClose').on('click', function (){
+	// 	$('#bookDetail').fadeOut();
+	// })
 
 
 	//이미지 슬라이드(좌우)

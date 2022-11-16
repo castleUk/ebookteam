@@ -1,4 +1,4 @@
-package com.ebook.manage.dao.impl;
+package com.ebook.subscr.dao;
 
 import java.util.List;
 
@@ -6,8 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ebook.manage.dao.SubscrDao;
-import com.ebook.manage.vo.SubscrVo;
+import com.ebook.subscr.vo.SubscrVo;
 
 @Repository("subscrDao")
 public class SubscrDaoImpl implements SubscrDao {

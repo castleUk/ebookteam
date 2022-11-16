@@ -13,15 +13,11 @@
     <link rel="stylesheet" href="/css/media.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="./bootstrap-4.5.0/js/bootstrap.min.js"></script>
-    <%--	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>--%>
-    <%--	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>--%>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-
     </script>
 </head>
 <body>
@@ -95,6 +91,11 @@
         </div>
 
 </body>
+
+
+
+
+
 <!-- 모달 시작-------------------------------------------------------------------------------------------->
 <div class="modal modal-m" id="bookDetail">
     <div class="modal-content">
@@ -156,7 +157,6 @@
     function PopupEmpInfo(clicked_element) {
         var row_td = clicked_element.getElementsByTagName("td");
         // var modal = document.getElementById("myModal");
-
         document.getElementById("book_image").innerHTML = row_td[0].innerHTML;
         document.getElementById("book_title").innerHTML = row_td[1].innerHTML;
         document.getElementById("book_isbn").innerHTML = row_td[2].innerHTML;
@@ -164,20 +164,15 @@
         document.getElementById("book_publisher").innerHTML = row_td[4].innerHTML;
         document.getElementById("book_description").innerHTML = row_td[5].innerHTML;
     }
-
     //==============================================================================
     var close = document.getElementById('modalClose')
     close.addEventListener("click", close_modal)
-
     function close_modal(event) {
         $('#bookDetail').modal('hide')
-
     }
-
     //=====================================================================
     var gobook = document.getElementById('gobook')
     gobook.addEventListener("click", go_book)
-
     function go_book(event) {
         var isbn = $('#book_isbn').text()
         console.log(isbn)
@@ -193,7 +188,5 @@
             }
         });
     }
-
-
 </script>
 </html>
