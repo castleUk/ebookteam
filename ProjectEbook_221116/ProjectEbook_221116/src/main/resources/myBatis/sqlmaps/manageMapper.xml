@@ -105,11 +105,14 @@
   
   <!-- 구독 신청 -->
   <insert id="SubscrInsert">
-  	INSERT INTO SUBSCRIBEMANAGE (SUBSCRIBEKEY, USERID, PAYMENT, CARDNUM, CARDPW, SUBDATE, EXDATE)
-		VALUES(
-			( SELECT NVL(MAX(SUBSCRIBEKEY),0)+1 FROM SUBSCRIBEMANAGE ),
-			#{userId}, #{payMent}, #{cardNum}, #{cardPw}, SYSDATE, SYSDATE
-		)
+  		MERGE INTO SUBSCRIBEMANAGE
+  		    using dual
+  		    ON (USERID = '${userId}')
+  		    WHEN MATCHED THEN
+  		    	UPDATE 
+  		    WHEN NOT MATCHED THEN
+				INSERT(SUBSCRIBEKEY, USERID, PAYMENT, CARDNUM, CARDPW)
+				VALUES(BOOK_SEQ.NEXTVAL, #{userId}, #{payMent}, #{cardNum}, #{cardPw})
   </insert>
   
   <!-- 요청 관리 : 목록 -->

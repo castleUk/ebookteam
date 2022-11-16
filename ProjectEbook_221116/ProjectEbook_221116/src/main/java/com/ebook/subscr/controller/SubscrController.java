@@ -41,13 +41,18 @@ public class SubscrController {
 	
 	@PostMapping("/subscr/writeForm")
 	public String subResister(SubscrVo subscrVo) throws Exception{
+		
 		subscribeService.insertSubscr(subscrVo);
+
 		return "/subscr/subscrView";
 	}
 
 	
-
 	@GetMapping("/subscr/subscrView")
+	public String go() throws Exception{
+		return "/subscr/subscrView";
+	}
+	@PostMapping("/subscr/subscrView")
 	public String subView(HttpSession httpSession, Model model) throws Exception{
 		UsersVO userinfo = (UsersVO) httpSession.getAttribute("user");
 		String userId = userinfo.getUserId();

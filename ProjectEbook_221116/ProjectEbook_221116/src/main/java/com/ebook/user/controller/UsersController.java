@@ -88,8 +88,8 @@ public class UsersController {
 
     //==========================업데이트==========================================
     @GetMapping("/user/update")
-    public String update() {
-        UsersVO list = (UsersVO) httpSession.getAttribute("user");
+    public String update(HttpSession session) {
+        UsersVO list = (UsersVO) session.getAttribute("user");
         if (list == null) {
             return "redirect:/";
 
