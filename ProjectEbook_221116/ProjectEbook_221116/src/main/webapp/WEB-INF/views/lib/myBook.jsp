@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/custom.css"/>
     <link rel="stylesheet" href="/css/media.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -37,14 +38,16 @@
                             <tr>
                                 <th>사진</th>
                                 <th>제목</th>
+                                <th>읽기</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${list}" var="list">
                                 <tr>
-                                    <td><img src="${list.apiDTO.image}" width="230" height="270" class="card-img-top"
+                                    <td><img src="${list.apiDTO.image}" width="150" height="190" class="card-img-top"
                                              alt="..."></td>
                                     <td>${list.apiDTO.title}</td>
+                                    <td> <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf">읽기</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

@@ -180,12 +180,6 @@
             url: "/book/libinsert",
             method: "post",
             data: {"isbn": isbn},
-            success: function (data) {
-                alert("전송성공");
-            },
-            error: function (error) {
-                alert("전송실패!");
-            }
         });
     }
 </script>

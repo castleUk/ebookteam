@@ -97,7 +97,7 @@
   
   <!-- 구독 관리 : 정보보기 -->
   <select id="SubscrView" resultType="com.ebook.subscr.vo.SubscrVo">
-		SELECT SM.SUBSCRIBEKEY, U.USERID, U.USERNAME, U.JOINDATE, SM.SUBDATE, ADD_MONTHS(EXDATE, 1) EXDATE, SM.PAYMENT,
+		SELECT SM.SUBSCRIBEKEY, U.USERID, U.USERNAME, U.JOINDATE, SM.SUBDATE, SM.EXDATE, SM.PAYMENT,
 		CONCAT(SUBSTR(CARDNUM,1,4),'-') || CONCAT(SUBSTR(CARDNUM,5,4),'-') || CONCAT(SUBSTR(CARDNUM,9,4),'') AS CARDNUM
 		FROM SUBSCRIBEMANAGE SM, EUSER U
 		WHERE U.USERID = SM.USERID AND U.USERID = #{userId}
@@ -105,14 +105,17 @@
   
   <!-- 구독 신청 -->
   <insert id="SubscrInsert">
-  		MERGE INTO SUBSCRIBEMANAGE
-  		    using dual
-  		    ON (USERID = '${userId}')
-  		    WHEN MATCHED THEN
-  		    	UPDATE 
-  		    WHEN NOT MATCHED THEN
-				INSERT(SUBSCRIBEKEY, USERID, PAYMENT, CARDNUM, CARDPW)
-				VALUES(BOOK_SEQ.NEXTVAL, #{userId}, #{payMent}, #{cardNum}, #{cardPw})
+	  MERGE
+		  INTO SUBSCRIBEMANAGE
+			  using dual
+			  ON (USERID = #{userId})
+			  WHEN MATCHED THEN
+				  UPDATE
+					  SET SUBDATE = sysdate,
+						  EXDATE= sysdate+30
+			  WHEN NOT MATCHED THEN
+				  	INSERT(SUBSCRIBEKEY, USERID, PAYMENT, CARDNUM, CARDPW, SUBDATE, EXDATE)
+					  VALUES (BOOK_SEQ.NEXTVAL, #{userId}, #{payMent}, #{cardNum}, #{cardPw}, sysdate, (sysdate + 30))
   </insert>
   
   <!-- 요청 관리 : 목록 -->

@@ -8,6 +8,7 @@
     </div>
     <div class="head-nav">
         <ul class="no-login">
+            <li class="item-link"><a>${sessionScope.user.userId} 님</a></li>
             <li class="item-link"><a class="link" href="/board/list?postCategory=refer">새소식</a></li>
             <c:choose>
                 <c:when test="${sessionScope.user.userId=='admin2'}">

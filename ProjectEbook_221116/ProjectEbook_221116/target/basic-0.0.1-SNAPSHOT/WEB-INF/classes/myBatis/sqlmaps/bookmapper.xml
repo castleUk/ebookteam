@@ -7,7 +7,7 @@
 
     <insert id="libinsert">
         insert into MYLIBRARY(id, userId, isbn)
-        VALUES (lib_seq.nextval, #{userId}, #{isbn})
+        VALUES (book_seq.nextval, #{userId}, #{isbn})
     </insert>
 
 

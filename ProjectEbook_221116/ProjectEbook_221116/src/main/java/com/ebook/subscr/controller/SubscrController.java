@@ -49,7 +49,11 @@ public class SubscrController {
 
 	
 	@GetMapping("/subscr/subscrView")
-	public String go() throws Exception{
+	public String go(HttpSession session) throws Exception{
+		UsersVO userinfo = (UsersVO) session.getAttribute("user");
+		if (userinfo==null){
+			return "redirect:/";
+		}
 		return "/subscr/subscrView";
 	}
 	@PostMapping("/subscr/subscrView")

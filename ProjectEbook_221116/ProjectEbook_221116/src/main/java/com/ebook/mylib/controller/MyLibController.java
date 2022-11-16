@@ -41,8 +41,8 @@ public class MyLibController {
 //	}
     @GetMapping("/lib/myBook")
     public String list(MyLibDTO myLibDTO, Model model, HttpSession httpSession) throws Exception {
-        UsersVO list = (UsersVO) httpSession.getAttribute("user");
-        if (list == null) {
+        UsersVO session = (UsersVO) httpSession.getAttribute("user");
+        if (session == null) {
             return "redirect:/";
         }
         MyLibDTO dto = new MyLibDTO();
