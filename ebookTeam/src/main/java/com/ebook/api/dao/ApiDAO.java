@@ -25,5 +25,9 @@ public class ApiDAO {
         return sqlSession.selectList("apiMapper.getSearchList", apiDTO);
     }
 
+    public List<ApiDTO> getRandomList(ApiDTO apiDTO) throws Exception{
+        return sqlSession.selectList("apiMapper.randomselect",apiDTO);
+    }
+
 
 }

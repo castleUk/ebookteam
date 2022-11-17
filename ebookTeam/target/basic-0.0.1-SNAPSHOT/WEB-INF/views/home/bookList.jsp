@@ -9,24 +9,24 @@
 		<div class="content-body">
 
 			<div class="row">
-				<a class="book" href="/api/searchList2?type=title&keyword=아버지의+해방일지">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(0).getTitle()}">
 					<div class="card book-cont">
-						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936438838.jpg" class="item-img"/>
+						<img src="${random.get(0).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/api/searchList2?type=title&keyword=만일+내가+인생을+다시+산다면">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(1).getTitle()}">
 					<div class="card book-cont">
-						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791190538510.jpg" class="item-img"/>
+						<img src="${random.get(1).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/api/searchList2?type=title&keyword=불편한+편의점">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(2).getTitle()}">
 					<div class="card book-cont">
-						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
+						<img src="${random.get(2).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/api/searchList2?type=title&keyword=전천당+16">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(3).getTitle()}">
 					<div class="card book-cont">
-						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791164064748.jpg" class="item-img"/>
+						<img src="${random.get(3).getImage()}" class="item-img"/>
 					</div>
 				</a>
 			</div>
@@ -42,24 +42,24 @@
 		</div>
 		<div class="content-body">
 			<div class="row">
-				<a class="book" href="#">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(4).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="${random.get(4).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="#">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(5).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="${random.get(5).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="#">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(6).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="${random.get(6).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="#">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(7).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="${random.get(7).getImage()}" class="item-img"/>
 					</div>
 				</a>
 			</div>
@@ -76,24 +76,24 @@
 		</div>
 		<div class="content-body">
 			<div class="row">
-				<a class="book" href="/library/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(8).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="${random.get(8).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/library/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(9).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="${random.get(9).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/library/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(10).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="${random.get(10).getImage()}" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/library/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=${random.get(11).getTitle()}">
 					<div class="card book-cont">
-						<div class="item-img">이미지 선택하면 도서 페이지로 이동</div>
+						<img src="${random.get(11).getImage()}" class="item-img"/>
 					</div>
 				</a>
 			</div>

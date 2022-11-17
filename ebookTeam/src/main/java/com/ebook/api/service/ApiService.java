@@ -28,4 +28,8 @@ public class ApiService {
         return apiDAO.getSearchList(apiDTO);
     }
 
+    public List<ApiDTO> getRandomList(ApiDTO apiDTO) throws Exception{
+        return apiDAO.getRandomList(apiDTO);
+    }
+
 }

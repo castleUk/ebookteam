@@ -44,6 +44,27 @@
         from books
         order by bookkey desc
     </select>
+
+
+
+
+
+
+
+    <!-- 홈에 북 random 추출 -->
+    <select id ="randomselect" resultType="com.ebook.api.vo.ApiDTO">
+        select * from  (select * from books
+
+        order by dbms_random.value)
+
+        <![CDATA[where rownum <= 12]]>
+
+    </select>
+
+
+
+
+
 </mapper>
 
 
