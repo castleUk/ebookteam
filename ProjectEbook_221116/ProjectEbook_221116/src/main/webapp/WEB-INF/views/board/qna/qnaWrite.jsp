@@ -13,23 +13,16 @@
 	<link rel="stylesheet" href="/css/media.css" />
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script src="/js/common.js"></script>
-	<script src="/js/common.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			// 삭제 버튼
-			$('#btnDelete').on('click', function(){
+			/*$('#btnDelete').on('click', function(){
 				var deleteYN = confirm("삭제하시겠습니까?");
 				if(deleteYN == true){
 					formObj.submit();
 				}
-			});	
-			
-			// 목록 버튼
-			$('#btnList').on('click', function(){
-				//alert("목록");
-				let url = '/board/list?postCategory=${board.postCategory}';
-				location.href = url;
-			});
+			});	*/
+			$('.replay-form textarea').css('height','100px');
 		});
 	</script>
 </head>
@@ -44,10 +37,11 @@
 				<div class="content">
 					<div class="container">
 						<div class="content-header">
-							<h2>${ pageMenu.menu_name } 게시글</h2>
+							<h2>Q&A 답글</h2>
 						</div>
 						
 						<div class="content-body">
+						<!-- 답글 내용 -->
 							<div class="form-table">
 								<table class="table">
 									<tr>
@@ -64,29 +58,43 @@
 									</tr>
 									<tr>
 										<th>내용</th>
-										<td colspan="5" class="cont">${board.postContent}</td>
+										<td colspan="5">${board.postContent}</td>
 									</tr>
 								</table>
-								<div class="btn-group">
-									<button id="btnList" class="btn btn-secondary mr-10">목록</button>
-									<c:if test="${sessionScope.user.userId=='admin2'}">
-									<a class="btn btn-primary" id="btnReplay" 
-										href="/board/replayForm?postCategory=${board.postCategory}&postKey=${board.postKey}&bnum=${boardVo.bnum}&lvl=${boardVo.lvl}&step=${boardVo.step}&nref=${boardVo.nref}">답변</a>
-									</c:if>
-									<a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">수정</a>
-									<a class="btn btn-danger" id="btnDelete" href="/board/delete?postCategory=${board.postCategory}&postKey=${board.postKey}">삭제</a>
-								</div>
 							</div>
+							<!-- 답글 내용 -->
 							
-							<c:if test="${board.postCategory eq 'commu'}" var="commu" scope="session">
-								<!-- 댓글 -->
-								<%@ include file="/WEB-INF/views/board/comm/boardWrite.jsp" %>
-								<!-- 댓글 -->
-								
-								<!-- 댓글 목록 -->
-								<%@ include file="/WEB-INF/views/board/comm/boardList.jsp" %>
-								<!-- 댓글 목록 -->
-							</c:if>
+							<!-- 답글 쓰기-->
+							<form class="form-table replay-form" action="/board/replay">
+								<input type="hidden"  name="postCategory" value="${board.postCategory}"/>
+								<input type="hidden"  name="postKey" value="${board.postKey}"/>
+					      <input type="hidden" name="bNum"    value="${board.bNum}" />   
+					      <input type="hidden" name="lvl"     value="${board.lvl}" />   
+					      <input type="hidden" name="step"    value="${board.step}" />   
+					      <input type="hidden" name="nref"    value="${board.nref}" /> 
+								<table class="table">
+									<tr>
+										<th>제목</th>
+										<td><input type="text" class="chk" name="postTitle" value="[답변] ${board.postTitle}" placeholder="제목을 입력하세요."/></td>
+									</tr>
+									<tr>
+										<th>작성자</th>
+										<td><input type="text" class="chk" name="userId" value="${board.userId}" placeholder="아이디"/></td>
+									</tr>
+									<tr>
+										<th>내용</th>
+										<td>
+											<textarea name="postContent" class="chk" placeholder="내용을 입력하세요."></textarea>
+										</td>
+									</tr>
+								</table>
+							
+								<div class="btn-group">
+									<button id="btnList" class="btn btn-secondary">목록</button>
+									<button type="submit" id="btnCreate" class="btn btn-primary right">등록</button>
+								</div>
+							</form>
+							<!-- 답글 쓰기-->
 						</div>
 					</div>
 				</div>

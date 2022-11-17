@@ -35,7 +35,7 @@
 							<div class="row">
 								<a class="book" id="readBook" href="#">
 									<div class="card book-cont" >
-										<div class="item-img"><a href="../../../resources/PDFJS/web/viewer.html?file=dongbeak.pdf"><a></a></div>
+										<div class="item-img"></div>
 										<div class="item-title">트렌드 코리아 2023</div>
 									</div>
 								</a>

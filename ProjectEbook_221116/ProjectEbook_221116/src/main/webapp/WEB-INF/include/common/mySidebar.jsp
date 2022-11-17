@@ -4,14 +4,6 @@
 <nav class="sidebar">
 	<ul class="nav">
 		<li class="link-title active">
-			<a class="link">도서</a>
-		</li>
-		<ul class="sub-nav">
-			<li class="link-item">
-				<a class="link" href="/api/searchList">자료 검색</a>
-			</li>
-		</ul>
-		<li class="link-title">
 			<a class="link">마이페이지</a>
 		</li>
 		<ul class="sub-nav">

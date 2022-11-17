@@ -50,4 +50,7 @@ public interface BoardDao {
 	// 도서 요청 삭제
 	void deleteBookRequest(int req_key);
 	
+	// Q&A 답글
+	void insertReplayBoard(BoardVo board);
+	
 }

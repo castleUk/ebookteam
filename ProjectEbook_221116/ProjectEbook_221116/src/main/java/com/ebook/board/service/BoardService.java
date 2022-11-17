@@ -50,5 +50,8 @@ public interface BoardService {
 	// 도서 요청 삭제
 	void deleteBookRequest(int req_key);
 	
+	// qna 답글쓰기
+	void insertReplayBoard(BoardVo board);
+	
 
 }

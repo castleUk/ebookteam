@@ -8,7 +8,7 @@ public interface RequestDao {
 
 	List<RequestVo> getRequestList();
 
-	RequestVo getRequestView(String userId);
+	RequestVo getRequestView(int req_key);
 
 	void updateRequest(RequestVo request);
 

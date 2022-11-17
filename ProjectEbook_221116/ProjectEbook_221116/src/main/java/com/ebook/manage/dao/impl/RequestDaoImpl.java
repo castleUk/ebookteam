@@ -22,8 +22,8 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@Override
-	public RequestVo getRequestView(String userId) {
-		RequestVo request = sqlSession.selectOne("Manage.RequestView", userId);
+	public RequestVo getRequestView(int req_key) {
+		RequestVo request = sqlSession.selectOne("Manage.RequestView", req_key);
 		return request;
 	}
 

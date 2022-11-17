@@ -14,14 +14,15 @@
 				</c:forEach>
 			</li>
 		</ul>
-		<li class="link-item">
-			<a class="link-title">마이페이지</a>
+		<li class="link-title">
+			<a class="link">마이페이지</a>
 		</li>
 		<ul class="sub-nav">
 			<li class="link-item">
-				<c:forEach var="menu" items="${myMenu}">
-					<a class="link" href="/user/${menu.postCategory}">${menu.menu_name}</a>
-				</c:forEach>
+				<a class="link" href="/user/update">회원정보수정</a>
+			</li>
+			<li class="link-item">
+				<a class="link" href="/lib/myBook">내서재</a>
 			</li>
 		</ul>
 	</ul>

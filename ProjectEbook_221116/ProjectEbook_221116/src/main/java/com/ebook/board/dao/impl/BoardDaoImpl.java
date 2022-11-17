@@ -98,6 +98,7 @@ public class BoardDaoImpl implements BoardDao {
 	
 	/*----------------------------------------*/
 
+	
 	// 도서 요청 목록
 	@Override
 	public List<RequestVo> getRequestList(String postCategory) {
@@ -116,6 +117,16 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void deleteBookRequest(int req_key) {
 		sqlSession.delete("Board.BookRequestDelete", req_key);
+		
+	}
+	
+	
+	/*----------------------------------------*/
+	
+	// Q&A 답글
+	@Override
+	public void insertReplayBoard(BoardVo board) {
+		sqlSession.insert("Board.ReplayBoardInsert", board);
 		
 	}
 	

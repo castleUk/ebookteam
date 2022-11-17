@@ -22,7 +22,7 @@
         <%@ include file="/WEB-INF/include/common/header.jsp" %>
         <!-- header -->
         <div class="contents view">
-            <%@ include file="/WEB-INF/include/common/BoardSidebar.jsp" %>
+            <%@ include file="/WEB-INF/include/common/mySidebar.jsp" %>
             <div class="content">
                 <div class="container">
                     <div class="content-header">

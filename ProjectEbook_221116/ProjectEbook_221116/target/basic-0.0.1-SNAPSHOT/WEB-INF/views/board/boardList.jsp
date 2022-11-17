@@ -30,19 +30,19 @@
 				<div class="content">
 					<div class="container">
 						<div class="content-header">
-							<h2>${ postCategory }</h2>
+							<h2>${ pageMenu.menu_name }</h2>
 						</div>
 						<c:choose >
-							<c:when test="${postCategory eq 'refer' or postCategory eq 'notice' or postCategory eq 'commu' or postCategory eq 'qna'}">
+							<c:when test="${postCategory eq 'notice' or postCategory eq 'commu' or postCategory eq 'qna'}">
 								<div class="content-middle">
 									<div class="group-3">
-										<select name="searchSeclect">
+										<select name="searchSeclect" id="searchSeclect">
 											<option value="all">전체</option>
 											<option value="postTitle">제목</option>
 											<option value="userId">작성자</option>
 										</select>
-										<input type="search" name="searchInput"/>
-										<button class="btn btn-primary">검색</button>
+										<input type="search" name="keyword" id="keyword"/>
+										<button id="btnSearch" class="btn btn-primary">검색</button>
 									</div>
 									
 									<div class="btn-group">
@@ -76,7 +76,7 @@
 											<tbody>
 												<c:forEach var="board" items="${boardList}">
 													<tr>
-														<td>${board.postKey}</td>
+														<td>${board.sorting}</td>
 														<td><a id="boardView" href="/board/view?postCategory=${board.postCategory}&postKey=${board.postKey}">${board.postTitle}</a></td>
 														<td>${board.userId}</td>
 														<td>${board.postDate}</td>

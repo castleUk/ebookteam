@@ -22,8 +22,8 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public RequestVo getRequestView(String userId) {
-		RequestVo request = requestDao.getRequestView(userId);
+	public RequestVo getRequestView(int req_key) {
+		RequestVo request = requestDao.getRequestView(req_key);
 		return request;
 	}
 	

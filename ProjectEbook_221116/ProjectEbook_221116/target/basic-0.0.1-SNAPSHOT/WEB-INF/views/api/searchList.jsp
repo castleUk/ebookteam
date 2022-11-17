@@ -8,88 +8,86 @@
     <title>도서 목록</title>
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/css/common.css"/>
-    <link rel="stylesheet" href="/css/custom.css"/>
-    <link rel="stylesheet" href="/css/media.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="./bootstrap-4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/custom.css"/>
+    <link rel="stylesheet" href="/css/media.css"/>
 
     <script type="text/javascript">
     </script>
 </head>
 <body>
 <div class="wrapper">
-    <div class="components">
-        <%@ include file="../../include/common/header.jsp" %>
-
-        <div class="contents d-flex h-auto">
-            <nav class="sidebar">
-                <ul class="nav">
-                    <li class="link-item active">
-                        <a class="link" href="#">도서</a>
-                        <ul class="sub-nav">
-                            <li class="sub-item">
-                                <a class="sub-link" href="#">소설</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="link-item"><a class="link" href="#">마이페이지</a></li>
-                </ul>
-            </nav>
-            <div class="content w-setting">
-
-                <form name="search_form" action="/api/searchList" method="post">
-                    <select name="type" required>
-                        <option selected value="">검색 내용 선택</option>
-                        <option value="title">제목</option>
-                        <option value="author">저자</option>
-                        <option value="publisher">출판사</option>
-                    </select>
-
-                    <input type="text" name="keyword" value=""/>
-                    <button type="submit" value="검색">검색</button>
-                </form>
-                <div>
-                    <table>
-                        <thead>
-                        <tr style="display: none">
-                            <th>사진</th>
-                            <th>제목</th>
-                            <th>isbn</th>
-                            <th>저자</th>
-                            <th>출판사</th>
-                            <th style="display:none" ;>책 설명</th>
-                            <th>상세페이지</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${list}" var="list">
-                            <tr onclick="PopupEmpInfo(this)">
-                                <td><img src="${list.image}" width="230" height="270" class="card-img-top"
-                                         alt="..."></td>
-                                <td>${list.title}</td>
-                                <td>${list.isbn}</td>
-                                <td>${list.author}</td>
-                                <td>${list.publisher}</td>
-                                <td style="display:none" ;>${list.description}</td>
-                                <td>
-                                    <button class="view" data-toggle="modal" data-target="#bookDetail">상세보기</button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-
-                        </tbody>
-                        <tfoot>
-                        <td colspan="5" class="tablefoot"></td>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+	<div class="components">
+	 	<!-- header -->
+		<%@ include file="/WEB-INF/include/common/header.jsp" %>
+		<!-- header -->
+		
+		<div class="contents view">
+			<!-- sidebar -->
+			<%@ include file="/WEB-INF/include/common/bookSidebar.jsp" %>
+			<!-- sidebar -->
+			<div class="container">
+				<!-- content -->
+				<div class="content w-setting">
+					<!-- 검색 -->
+					<form class="search-from group-3" name="search_form" action="/api/searchList" method="post">
+						<select name="type" required>
+                <option selected value="">검색 내용 선택</option>
+                <option value="title">제목</option>
+                <option value="author">저자</option>
+                <option value="publisher">출판사</option>
+            </select>
+            <input type="text" name="keyword" value=""/>
+            <button type="submit" value="검색">검색</button>
+					</form>
+					<!-- 검색 -->
+					
+					<!-- 목록 -->
+					<div class="list-content">
+						<table class="table">
+		          <thead>
+			          <tr style="display: none">
+			              <th>사진</th>
+			              <th>제목</th>
+			              <th>isbn</th>
+			              <th>저자</th>
+			              <th>출판사</th>
+			              <th style="display:none;">책 설명</th>
+			              <th>상세페이지</th>
+			          </tr>
+		          </thead>
+		          <tbody>
+			          <c:forEach items="${list}" var="list">
+			              <tr onclick="PopupEmpInfo(this)">
+			                  <td><img src="${list.image}" width="230" height="270" class="card-img-top"
+			                           alt="..."></td>
+			                  <td>${list.title}</td>
+			                  <td>${list.isbn}</td>
+			                  <td>${list.author}</td>
+			                  <td>${list.publisher}</td>
+			                  <td style="display:none" ;>${list.description}</td>
+			                  <td>
+			                      <button class="view" data-toggle="modal" data-target="#bookDetail">상세보기</button>
+			                  </td>
+			              </tr>
+			          </c:forEach>
+		          </tbody>
+		          <tfoot>
+		          	<td colspan="5" class="tablefoot"></td>
+		          </tfoot>
+	      		</table>
+      		</div>
+					<!-- 목록 -->
+        </div>   
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 
 
@@ -180,6 +178,12 @@
             url: "/book/libinsert",
             method: "post",
             data: {"isbn": isbn},
+            success: function (data) {
+                alert("전송성공");
+            },
+            error: function (error) {
+                alert("전송실패!");
+            }
         });
     }
 </script>

@@ -56,6 +56,10 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.deleteBoard(postKey);
 	}
 	
+	
+	/* ------------------------------------------------------------ */
+	
+	
 	// 댓글 목록
 	@Override
 	public List<CommentVo> getCommList(int postKey) {
@@ -89,6 +93,10 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	
+	
+	/* ------------------------------------------------------------ */
+	
+	
 	// 도서 요청 목록
 	@Override
 	public List<RequestVo> getRequestList(String postCategory) {
@@ -107,6 +115,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBookRequest(int req_key) {
 		boardDao.deleteBookRequest(req_key);
+		
+	}
+	
+	
+	/* ------------------------------------------------------------ */
+	
+	
+	// Q&A 답글
+	@Override
+	public void insertReplayBoard(BoardVo board) {
+		boardDao.insertReplayBoard(board);
 		
 	}
 

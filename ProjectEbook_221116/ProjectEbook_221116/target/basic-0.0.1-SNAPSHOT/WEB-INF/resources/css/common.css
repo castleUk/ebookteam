@@ -94,6 +94,10 @@ a{
 	text-decoration: none;
 	color: #121212;
 }
+a:hover{
+	text-decoration: none;
+	color: #121212;
+}
 
 /*text*/
 :lang(ko){
@@ -204,7 +208,7 @@ button, .btn, input[type=submit], input[type=button]{
 /*table*/
 table, .table, .table-list{
   border-collapse: collapse;
-  width: auto;
+  width: 100%;
 }
 
 tr th, tr td{

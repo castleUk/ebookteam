@@ -62,4 +62,11 @@ public class MenuDaoImpl implements MenuDao {
 	}
 	
 	// 메뉴 삭제
+	
+	// 현재 메뉴 가져오기
+	@Override
+	public MenuVo getPageMenu(String postCategory) {
+		MenuVo pageMenu = sqlSession.selectOne("Manage.PageMenu", postCategory);
+		return pageMenu;
+	}
 }

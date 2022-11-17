@@ -59,7 +59,7 @@
 				<div class="content">
 					<div class="container">
 						<div class="content-header">
-							<h2>게시글 수정</h2>
+							<h2>${ pageMenu.menu_name } 수정</h2>
 						</div>
 						
 						<div class="content-body">

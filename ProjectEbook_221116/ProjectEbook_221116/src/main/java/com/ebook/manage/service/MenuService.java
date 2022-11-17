@@ -24,9 +24,11 @@ public interface MenuService {
 	
 	// 메뉴 수정
 	void updateMenu(MenuVo menu);
-	
+
 	// 메뉴 삭제
 	
+	// 현재 메뉴 가져오기
+	MenuVo getPageMenu(String postCategory);
 	
 
 	

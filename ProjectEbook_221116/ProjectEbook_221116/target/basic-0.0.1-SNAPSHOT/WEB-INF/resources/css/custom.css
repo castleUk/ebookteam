@@ -32,7 +32,7 @@
 }
 
 .h-setting{
-	height: calc(100% - 80px);
+	height: calc(100% - 60px);
 }
 
 .w-setting{
@@ -51,7 +51,7 @@
 
 /*header*/
 .header{
-	height: 80px;
+	height: 60px;
 	display: flex;
 	border-bottom: 1px solid #F2F2F2;
 	position: relative;
@@ -60,54 +60,56 @@
 	width: 240px;
 }
 .header .logo h1{
-	line-height: 80px;
+	line-height: 60px;
   text-align: center;
+  font-size: 2em;
+ 	font-weight: 600;
+ 	height: 100%;
+  display: flex;
+}
+.header .logo img{
+	margin: auto;
+	display: block;
 }
 .header .head-nav{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
   width: calc(100% - 240px);
   padding-right: 20px;
+}
+.header .head-nav .nav-category{
+	width: 60px;
+	height: 100%;
 }
 .header .head-nav .link{
 	font-size: 12px;
 	margin-left: 10px;
  	line-height: 30px;
 }
-.header .head-nav .no-login, .header .head-nav .login{
-	display: flex;
-	height: 30px;
-	margin-left: auto;
-}
-.header .head-content{
-	display: flex;
-	width: 80%;
-	height: 50px;
-	flex-direction: row;
-}
-.header .nav-category{
-	width: 120px;
-  flex: 0 0 120px;
-}
-.header .nav-category i{
+.header .head-nav .nav-category i{
+	margin: auto;
+	display: block;
+	height: 100%;
+	text-align: center;
 	font-size: 32px;
 }
-.header .nav-category a{
+.header .head-nav .nav-category i::before{
+	line-height: 60px;
+}
+.header .head-nav .nav{
 	display: flex;
+	flex-direction: row;
+	padding: 0px;
 }
-.header .nav-category span{
-	line-height: 50px;
-	padding-left: 10px;
+
+.header .head-nav .link{
+	font-size: 12px;
+	margin-left: 10px;
+  line-height: 40px;
+  height: 100%;
+  display: flex;
 }
-.header .nav-board{
-  width: 100px;
-  flex: 0 0 100px;
-}
-.header .nav-board a{
-  display: block;
-  line-height: 50px;
-  text-align: center;
-}
+
 .header  .search-content{
 	padding: 10px;
 	width: 100%;
@@ -137,6 +139,10 @@
 	flex: 0 0 240px;
 	height: 100%;
 }
+.sidebar .nav{
+	display: flex;
+ 	flex-direction: column;
+}
 .nav{
 	padding: 20px;
 }
@@ -145,16 +151,23 @@
 	display: block;
 }
 
-.nav .link-item .link-title{
-	padding: 10px;
+.nav .link-title{
   width: 100%;
+  padding: 10px;
   display: block;
 }
-.nav .link-item .link-title.active{
+.nav .link-title .link{
+	padding: 0px;
+}
+
+.nav .link-title.active{
 	background-color: #1E7AEB;
 	color: #FFFFFF;
 	border-radius: 10px;
 	font-weight: 600;
+}
+.nav .link-title.active .link{
+	color: #FFFFFF;
 }
 
 .nav .link-item .link.active{
@@ -178,13 +191,13 @@
 .menu{
 	position: absolute;
 	background: #Fff;
-  top: 80px;
+  top: 60px;
   width: calc(100% - 240px);
   border-bottom: 1px solid #f1f1f1;
   z-index: 1;
  
   display: none;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 .menu-form{
@@ -195,9 +208,15 @@
 .menu .menu-nav{
 	padding: 10px 20px;
 }
+.menu .menu-nav .link-title{
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+}
 
 .menu .menu-nav .link{
 	display: block;
+	font-size: 16px;
 }
 
 .menu .menu-nav .link:hover{
@@ -449,7 +468,7 @@
 
 .content .book{
   flex: 0 0 200px;
-  margin: 20px;
+  margin: 20px auto;
 }
 
 #bookDetail .modal-content{

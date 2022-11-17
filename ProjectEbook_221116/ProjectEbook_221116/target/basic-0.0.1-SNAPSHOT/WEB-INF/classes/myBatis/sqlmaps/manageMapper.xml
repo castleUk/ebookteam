@@ -138,7 +138,8 @@
 			  ON (USERID = #{userId})
 			  WHEN MATCHED THEN
 				  UPDATE
-					  SET SUBDATE = sysdate,
+					  SET CARDNUM = #{cardNum},
+					      SUBDATE = sysdate,
 						  EXDATE= sysdate+30
 			  WHEN NOT MATCHED THEN
 				  	INSERT(SUBSCRIBEKEY, USERID, PAYMENT, CARDNUM, CARDPW, SUBDATE, EXDATE)
@@ -171,6 +172,13 @@
 		SET REQ_PROCESS = #{req_process}
 		WHERE REQ_KEY = #{req_key}
   </update>
+
+	<!-- 현재 메뉴 가져오기 -->
+	<select id="PageMenu" resultType="com.ebook.manage.vo.MenuVo">
+		SELECT MENU_SEQ, MENU_CTGR, POSTCATEGORY, MENU_NAME
+		FROM BOARDMENUS
+		WHERE POSTCATEGORY = #{postCategory}
+	</select>
 </mapper>   
 
 

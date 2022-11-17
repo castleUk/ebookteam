@@ -10,6 +10,7 @@ public class BoardVo {
 	private String postCategory;
 	private int postViewCount;
 	private String postFileUrl;
+	private int sorting;
 	private int bNum;
 	private int lvl;
 	private int step;
@@ -22,9 +23,8 @@ public class BoardVo {
 	// 생성자
 	public BoardVo() {}
 	public BoardVo(int postKey, String postTitle, String postContent, String postDate, String userId,
-			String postCategory, int postViewCount, String postFileUrl, int bNum, int lvl, int step, int nref,
-			int file_num, String fileName, String fileExt, String sFileName) {
-		
+			String postCategory, int postViewCount, String postFileUrl, int sorting, int bNum, int lvl, int step,
+			int nref, int file_num, String fileName, String fileExt, String sFileName) {
 		this.postKey = postKey;
 		this.postTitle = postTitle;
 		this.postContent = postContent;
@@ -33,6 +33,7 @@ public class BoardVo {
 		this.postCategory = postCategory;
 		this.postViewCount = postViewCount;
 		this.postFileUrl = postFileUrl;
+		this.sorting = sorting;
 		this.bNum = bNum;
 		this.lvl = lvl;
 		this.step = step;
@@ -42,7 +43,7 @@ public class BoardVo {
 		this.fileExt = fileExt;
 		this.sFileName = sFileName;
 	}
-	// getter, setter
+	// GETTER, SETTER
 	public int getPostKey() {
 		return postKey;
 	}
@@ -90,6 +91,12 @@ public class BoardVo {
 	}
 	public void setPostFileUrl(String postFileUrl) {
 		this.postFileUrl = postFileUrl;
+	}
+	public int getSorting() {
+		return sorting;
+	}
+	public void setSorting(int sorting) {
+		this.sorting = sorting;
 	}
 	public int getbNum() {
 		return bNum;
@@ -139,14 +146,14 @@ public class BoardVo {
 	public void setsFileName(String sFileName) {
 		this.sFileName = sFileName;
 	}
-	// toString
+	// TOSTRING
 	@Override
 	public String toString() {
 		return "BoardVo [postKey=" + postKey + ", postTitle=" + postTitle + ", postContent=" + postContent
 				+ ", postDate=" + postDate + ", userId=" + userId + ", postCategory=" + postCategory
-				+ ", postViewCount=" + postViewCount + ", postFileUrl=" + postFileUrl + ", bNum=" + bNum + ", lvl="
-				+ lvl + ", step=" + step + ", nref=" + nref + ", file_num=" + file_num + ", fileName=" + fileName
-				+ ", fileExt=" + fileExt + ", sFileName=" + sFileName + "]";
+				+ ", postViewCount=" + postViewCount + ", postFileUrl=" + postFileUrl + ", sorting=" + sorting
+				+ ", bNum=" + bNum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", file_num=" + file_num
+				+ ", fileName=" + fileName + ", fileExt=" + fileExt + ", sFileName=" + sFileName + "]";
 	}
 	
 }

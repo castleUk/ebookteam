@@ -256,14 +256,14 @@ public class ManageController {
 	
 	// 요청 관리 : 보기
 	@RequestMapping("/request/view")
-	public ModelAndView reqestView(String userId) {
+	public ModelAndView reqestView(int req_key) {
 		ModelAndView mv = new ModelAndView();
 		
 		// sideMenu
 		List<MenuVo> manageMenu = menuService.getManageMenu();
 		
 		// 목록
-		RequestVo request = requestService.getRequestView(userId);
+		RequestVo request = requestService.getRequestView(req_key);
 		
 		mv.addObject("manageMenu", manageMenu);
 		mv.addObject("request", request);

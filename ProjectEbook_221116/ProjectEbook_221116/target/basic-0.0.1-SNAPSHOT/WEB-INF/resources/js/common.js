@@ -1,8 +1,12 @@
 $(function(){
 	
 	// 상단 메뉴
-	$('#btnMenu').on('click', function(){
-		$('#headMenu').toggle('slow');
+	$('#btnMenu').on('mouseenter', function(){
+		$('#headMenu').slideDown(200);
+	});
+	
+	$('#headMenu').on('mouseleave', function(){
+		$('#headMenu').slideUp(200);
 	});
 
 	// 로그인
@@ -77,7 +81,39 @@ $(function(){
         currentIndex = 0;
     }
     var slidePosition = currentIndex * (-100)+"%";
-    $(".slide-content").animate({ left:slidePosition },600);
-},6000);
+  	$(".slide-content").animate({ left:slidePosition },600);
+	},6000);
+
+
+	// 게시판 검색
+	$('#btnSearch').on('click', function(e){
+		e.preventDefault();
+		var url = "/board/list";
+		url = url + "?searchSeclect=" + $('#searchSeclect').val();
+		url = url + "&keyword=" + $('#keyword').val();
+		location.href = url;
+		console.log(url);
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });

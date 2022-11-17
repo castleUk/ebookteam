@@ -10,7 +10,7 @@ public interface RequestService {
 	List<RequestVo> getRequestList();
 	
 	// 요청 관리 : 보기
-	RequestVo getRequestView(String userId);
+	RequestVo getRequestView(int req_key);
 	
 	// 요청 관리 : 가져오기
 	RequestVo getRequest(int req_key);

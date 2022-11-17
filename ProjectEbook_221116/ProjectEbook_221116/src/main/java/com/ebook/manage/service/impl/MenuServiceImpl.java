@@ -59,6 +59,13 @@ public class MenuServiceImpl implements MenuService {
 		menuDao.updateMenu(menu);
 	}
 	
+	// 현재 메뉴 가져오기
+	@Override
+	public MenuVo getPageMenu(String postCategory) {
+		MenuVo pageMenu = menuDao.getPageMenu(postCategory);
+		return pageMenu;
+	}
+	
 
 	
 
