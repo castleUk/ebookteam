@@ -15,6 +15,16 @@
     <script type="text/javascript">
 
     </script>
+    
+    <!-- 키보드 입력 제한 기능 -->
+	<script type="text/javascript">
+	
+	  function maxLengthnum(object){
+	    if (object.value.length > object.maxLength){
+	      object.value = object.value.substr(0, object.maxLength);
+	    }    
+	  }
+	</script>
 </head>
 <body>
 <div class="wrapper">
@@ -45,11 +55,11 @@
                             </tr>
                             <tr>
                                 <th>카드 번호</th>
-                                <td><input type="number" name="cardNum" placeholder="카드 번호"/></td>
+                                <td><input type="number" name="cardNum" placeholder="카드 번호" maxlength="16" oninput="maxLengthnum(this)"/></td>
                             </tr>
                             <tr>
                                 <th>카드 비밀번호</th>
-                                <td><input type="number" name="cardPw" placeholder="카드 비밀번호"/></td>
+                                <td><input type="number" name="cardPw" placeholder="카드 비밀번호" maxlength="4" oninput="maxLengthnum(this)"/></td>
                             </tr>
                         </table>
 
