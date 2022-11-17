@@ -1,5 +1,11 @@
 package com.ebook.board.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class BoardVo {
 	//게시판
 	private int postKey;
@@ -20,29 +26,7 @@ public class BoardVo {
 	private String fileName; // 파일명
 	private String fileExt; // 파일확장자
 	private String sFileName; // 실제 저장 파일
-	// 생성자
-	public BoardVo() {}
-	public BoardVo(int postKey, String postTitle, String postContent, String postDate, String userId,
-			String postCategory, int postViewCount, String postFileUrl, int sorting, int bNum, int lvl, int step,
-			int nref, int file_num, String fileName, String fileExt, String sFileName) {
-		this.postKey = postKey;
-		this.postTitle = postTitle;
-		this.postContent = postContent;
-		this.postDate = postDate;
-		this.userId = userId;
-		this.postCategory = postCategory;
-		this.postViewCount = postViewCount;
-		this.postFileUrl = postFileUrl;
-		this.sorting = sorting;
-		this.bNum = bNum;
-		this.lvl = lvl;
-		this.step = step;
-		this.nref = nref;
-		this.file_num = file_num;
-		this.fileName = fileName;
-		this.fileExt = fileExt;
-		this.sFileName = sFileName;
-	}
+
 	// GETTER, SETTER
 	public int getPostKey() {
 		return postKey;
