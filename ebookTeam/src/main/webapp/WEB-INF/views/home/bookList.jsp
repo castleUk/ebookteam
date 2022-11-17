@@ -44,22 +44,22 @@
 			<div class="row">
 				<a class="book" href="#">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
 					</div>
 				</a>
 				<a class="book" href="#">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
 					</div>
 				</a>
 				<a class="book" href="#">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
 					</div>
 				</a>
 				<a class="book" href="#">
 					<div class="card book-cont">
-						<div class="item-img"></div>
+						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
 					</div>
 				</a>
 			</div>

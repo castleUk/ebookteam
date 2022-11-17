@@ -42,7 +42,7 @@
              , publisher
              , image
         from books
-        order by id desc
+        order by bookkey desc
     </select>
 </mapper>
 

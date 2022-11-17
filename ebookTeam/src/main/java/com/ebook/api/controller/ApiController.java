@@ -26,10 +26,10 @@ public class ApiController {
     private final NaverBookSearch naverBookSearch;
     private final ApiService apiService;
 
-
+//
 //    @GetMapping("/api/search")
 //    public String list(ApiDTO apiDTO, Model model) throws Exception {
-////        model.addAttribute("list", apiService.list(apiDTO));
+//        model.addAttribute("list", apiService.list(apiDTO));
 //        return "/api/search";
 //    }
 
@@ -47,7 +47,8 @@ public class ApiController {
 //    }
 
     @GetMapping("/api/searchList")
-    public String go() {
+    public String go(ApiDTO apiDTO, Model model) throws Exception {
+        model.addAttribute("list", apiService.list(apiDTO));
         UsersVO list = (UsersVO) httpSession.getAttribute("user");
 //        if (list == null) {
 //            return "redirect:/";
