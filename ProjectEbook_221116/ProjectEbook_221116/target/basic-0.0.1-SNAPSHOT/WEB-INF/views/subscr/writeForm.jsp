@@ -28,7 +28,7 @@
                     <h2>구독 신청</h2>
                 </div>
                 <div class="content-body">
-                    <form class="form-table" method="post" action="/subscr/subscrView">
+                    <form class="form-table" method="post" action="/subscr/writeForm">
                         <table class="table">
                             <tr>
                                 <th>아이디</th>

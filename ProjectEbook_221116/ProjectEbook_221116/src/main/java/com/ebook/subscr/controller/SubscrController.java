@@ -44,25 +44,32 @@ public class SubscrController {
 		
 		subscribeService.insertSubscr(subscrVo);
 
-		return "/subscr/subscrView";
+		return "redirect:/subscr/subscrView";
 	}
 
 	
 	@GetMapping("/subscr/subscrView")
-	public String go(HttpSession session) throws Exception{
+	public String go(HttpSession session,Model model) throws Exception{
 		UsersVO userinfo = (UsersVO) session.getAttribute("user");
 		if (userinfo==null){
 			return "redirect:/";
 		}
-		return "/subscr/subscrView";
-	}
-	@PostMapping("/subscr/subscrView")
-	public String subView(HttpSession httpSession, Model model) throws Exception{
-		UsersVO userinfo = (UsersVO) httpSession.getAttribute("user");
+		log.info(userinfo);
 		String userId = userinfo.getUserId();
 		SubscrVo modelinfo = subscribeService.getSubscrView(userId);
+		log.info(modelinfo);
 		model.addAttribute("info",modelinfo);
-
 		return "/subscr/subscrView";
 	}
+//	@PostMapping("/subscr/subscrView")
+//	public String subView(HttpSession httpSession, Model model) throws Exception{
+//		UsersVO userinfo = (UsersVO) httpSession.getAttribute("user");
+//		log.info(userinfo);
+//		String userId = userinfo.getUserId();
+//		SubscrVo modelinfo = subscribeService.getSubscrView(userId);
+//		log.info(modelinfo);
+//		model.addAttribute("info",modelinfo);
+//
+//		return "/subscr/subscrView";
+//	}
 }

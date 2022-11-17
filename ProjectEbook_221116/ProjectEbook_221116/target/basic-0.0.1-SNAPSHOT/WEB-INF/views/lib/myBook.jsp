@@ -44,10 +44,10 @@
                             <tbody>
                             <c:forEach items="${list}" var="list">
                                 <tr>
-                                    <td><img src="${list.apiDTO.image}" width="230" height="270" class="card-img-top"
+                                    <td><img src="${list.apiDTO.image}" width="150" height="190" class="card-img-top"
                                              alt="..."></td>
                                     <td>${list.apiDTO.title}</td>
-                                    <td> <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf">음음</a></td>
+                                    <td> <a href="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf">읽기</a></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
