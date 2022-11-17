@@ -1,6 +1,7 @@
 package com.ebook.api.util;
 
 import com.ebook.api.vo.ApiDTO;
+import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.*;
@@ -10,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 @Component
 public class NaverBookSearch {
 
@@ -37,8 +39,11 @@ public class NaverBookSearch {
         for (int i = 0; i < items.length(); i++) {
             JSONObject itemJson = items.getJSONObject(i);
             ApiDTO apiDTO = new ApiDTO(itemJson);
-            ret.add(apiDTO);
-        }
+             String apiisbn= apiDTO.getIsbn();
+            log.info("====================================================");
+            log.info(apiisbn);
+            if (apiisbn.length()>2){ret.add(apiDTO);}}
+        log.info(ret);
         return ret;
     }
 }

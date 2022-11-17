@@ -10,6 +10,7 @@
     	<div class="nav-category" id="btnMenu"><i class="bi bi-list"></i></div>
         
       <ul class="nav ml-auto">
+            <li class="item-link"><a class="link" href="/user/update">${sessionScope.user.userId}</a></li>
     		<li class="item-link"><a class="link" href="/board/list?postCategory=notice">새소식</a></li>
     		
     		<c:choose>

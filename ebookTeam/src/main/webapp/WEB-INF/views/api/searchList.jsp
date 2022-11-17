@@ -35,7 +35,7 @@
 				<!-- content -->
 				<div class="content w-setting">
 					<!-- 검색 -->
-					<form class="search-from group-3" name="search_form" action="/api/searchList" method="post">
+					<form class="search-from group-3" name="search_form" action="/api/searchList2" method="get">
 						<select name="type" required>
                 <option selected value="">검색 내용 선택</option>
                 <option value="title">제목</option>

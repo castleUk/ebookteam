@@ -58,15 +58,13 @@ public class ApiController {
 //        }
     }
 
-    @PostMapping("/api/searchList")
+    @GetMapping("/api/searchList2")
     public String getSearchList(@RequestParam("keyword") String keyword, @RequestParam("type") String type, Model model) throws Exception {
         String resultString = naverBookSearch.search(keyword);
         List<ApiDTO> bookinfo = naverBookSearch.fromJSONtoItems(resultString);
         for (int i = 0; i < bookinfo.size(); i++) {
             apiService.insertBook(bookinfo.get(i));
         }
-
-
         ApiDTO dto = new ApiDTO();
         log.info(keyword);
         dto.setKeyword(keyword);

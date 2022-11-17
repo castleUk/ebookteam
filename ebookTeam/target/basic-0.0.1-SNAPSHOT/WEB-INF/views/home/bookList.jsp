@@ -9,22 +9,22 @@
 		<div class="content-body">
 
 			<div class="row">
-				<a class="book" href="/book/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=아버지의+해방일지">
 					<div class="card book-cont">
 						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936438838.jpg" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/book/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=만일+내가+인생을+다시+산다면">
 					<div class="card book-cont">
 						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791190538510.jpg" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/book/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=불편한+편의점">
 					<div class="card book-cont">
 						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161571188.jpg" class="item-img"/>
 					</div>
 				</a>
-				<a class="book" href="/book/list">
+				<a class="book" href="/api/searchList2?type=title&keyword=전천당+16">
 					<div class="card book-cont">
 						<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791164064748.jpg" class="item-img"/>
 					</div>
