@@ -106,7 +106,7 @@
 		     	, SM.USERID
 		     	, U.USERNAME
 		     	, U.JOINDATE
-		     	, SM.CARDNUM
+		     	, CONCAT(SUBSTR(CARDNUM,1,4),'-') || CONCAT(SUBSTR(CARDNUM,5,4),'-') || CONCAT(SUBSTR(CARDNUM,9,4),'') AS CARDNUM
 		     	, SM.SUBDATE
 		     	, SM.EXDATE
 		     	,SM.PAYMENT
