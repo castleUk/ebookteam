@@ -3,6 +3,8 @@ package com.ebook.api.controller;
 import com.ebook.api.service.ApiService;
 import com.ebook.api.util.NaverBookSearch;
 import com.ebook.api.vo.ApiDTO;
+import com.ebook.manage.service.MenuService;
+import com.ebook.manage.vo.MenuVo;
 import com.ebook.page.Criteria;
 import com.ebook.page.PageMaker;
 import com.ebook.user.vo.UsersVO;
@@ -26,6 +28,8 @@ public class ApiController {
     HttpSession httpSession;
 
     private final NaverBookSearch naverBookSearch;
+    @Autowired
+    private MenuService menuService;
     private final ApiService apiService;
 
 //
@@ -56,6 +60,10 @@ public class ApiController {
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
         pageMaker.setTotalCount(apiService.listCount());
+        List<MenuVo> boardMenu = menuService.getBoardMenu();
+        List<MenuVo> myMenu = menuService.getMyMenu();
+        model.addAttribute("boardMenu", boardMenu);
+        model.addAttribute("myMenu", myMenu);
         model.addAttribute("pageMaker", pageMaker);
 
 
@@ -74,6 +82,10 @@ public class ApiController {
         dto.setKeyword(keyword);
         dto.setType(type);
         log.info(dto);
+        List<MenuVo> boardMenu = menuService.getBoardMenu();
+        List<MenuVo> myMenu = menuService.getMyMenu();
+        model.addAttribute("boardMenu", boardMenu);
+        model.addAttribute("myMenu", myMenu);
         System.out.println("=================================");
         model.addAttribute("list", apiService.getSearchList(dto));
         log.info(model);
