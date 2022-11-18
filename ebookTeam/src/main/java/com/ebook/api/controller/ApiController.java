@@ -3,6 +3,8 @@ package com.ebook.api.controller;
 import com.ebook.api.service.ApiService;
 import com.ebook.api.util.NaverBookSearch;
 import com.ebook.api.vo.ApiDTO;
+import com.ebook.page.Criteria;
+import com.ebook.page.PageMaker;
 import com.ebook.user.vo.UsersVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -47,16 +49,17 @@ public class ApiController {
 //    }
 
     @GetMapping("/api/searchList")
-    public String go(ApiDTO apiDTO, Model model) throws Exception {
-        model.addAttribute("list", apiService.list(apiDTO));
-        UsersVO list = (UsersVO) httpSession.getAttribute("user");
-//        if (list == null) {
-//            return "redirect:/";
-//
-//
-//        } else {
+    public String go(Criteria cri, Model model) throws Exception {
+//        UsersVO list = (UsersVO) httpSession.getAttribute("user");
+        model.addAttribute("list", apiService.list(cri));
+
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(cri);
+        pageMaker.setTotalCount(apiService.listCount());
+        model.addAttribute("pageMaker", pageMaker);
+
+
             return "/api/searchList";
-//        }
     }
 
     @GetMapping("/api/searchList2")

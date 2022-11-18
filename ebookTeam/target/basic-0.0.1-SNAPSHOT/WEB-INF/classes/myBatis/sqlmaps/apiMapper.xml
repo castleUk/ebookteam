@@ -41,9 +41,29 @@
              , author
              , publisher
              , image
-        from books
-        order by bookkey desc
+        FROM (
+             SELECT bookkey
+                  , title
+                  , description
+                  , link
+                  , isbn
+                  , author
+                  , publisher
+                  , image
+                  , ROW_NUMBER() OVER(ORDER BY BOOKKEY DESC) AS RNUM
+             from books
+             )
+        WHERE RNUM BETWEEN  #{rowStart} AND #{rowEnd}
+         order by bookkey desc
     </select>
+
+    <select id ="listCount" resultType="int">
+        <![CDATA[
+        SELECT COUNT(bookkey)
+        FROM books
+        WHERE bookkey > 0
+        ]]>
+	</select>
 
 
 
