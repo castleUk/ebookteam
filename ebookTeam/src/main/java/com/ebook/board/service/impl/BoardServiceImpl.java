@@ -88,11 +88,17 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 댓글 삭제
 	@Override
-	public void deleteComment(int commIdx) {
-		boardDao.deleteComment(commIdx);
-		
+	public void deleteComment(int postKey) {
+		boardDao.deleteComment(postKey);
 	}
 	
+	// 댓글 갯수
+	@Override
+	public CommentVo getCommentcount(int postKey) {
+		CommentVo comm = boardDao.getCommentcount(postKey);
+		return comm;
+	}
+
 	
 	/* ------------------------------------------------------------ */
 	

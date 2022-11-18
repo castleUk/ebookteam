@@ -7,17 +7,20 @@ public class CommentVo {
 	private String userId;
 	private String commCont;
 	private String commDate;
+	private String commCount;
   // 생성자
   	public CommentVo() {}
-	public CommentVo(int commIdx, int postKey, String postCategory, String userId, String commCont, String commDate) {
-		this.commIdx = commIdx;
-		this.postKey = postKey;
-		this.postCategory = postCategory;
-		this.userId = userId;
-		this.commCont = commCont;
-		this.commDate = commDate;
-	}
-	// getter, setter
+  	public CommentVo(int commIdx, int postKey, String postCategory, String userId, String commCont, String commDate,
+		String commCount) {
+	this.commIdx = commIdx;
+	this.postKey = postKey;
+	this.postCategory = postCategory;
+	this.userId = userId;
+	this.commCont = commCont;
+	this.commDate = commDate;
+	this.commCount = commCount;
+  	}
+	// GETTER, SETTER
 	public int getCommIdx() {
 		return commIdx;
 	}
@@ -54,10 +57,18 @@ public class CommentVo {
 	public void setCommDate(String commDate) {
 		this.commDate = commDate;
 	}
-	// toString
+	public String getCommCount() {
+		return commCount;
+	}
+	public void setCommCount(String commCount) {
+		this.commCount = commCount;
+	}
+	// TOSTRING
 	@Override
 	public String toString() {
 		return "CommentVo [commIdx=" + commIdx + ", postKey=" + postKey + ", postCategory=" + postCategory + ", userId="
-				+ userId + ", commCont=" + commCont + ", commDate=" + commDate + "]";
+				+ userId + ", commCont=" + commCont + ", commDate=" + commDate + ", commCount=" + commCount + "]";
 	}
+
+	
 }	

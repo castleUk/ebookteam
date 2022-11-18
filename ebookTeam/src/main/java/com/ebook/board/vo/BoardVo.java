@@ -21,12 +21,16 @@ public class BoardVo {
 	private int lvl;
 	private int step;
 	private int nref;
-	//파일
+	// 파일
 	private int file_num; // 파일번호
 	private String fileName; // 파일명
 	private String fileExt; // 파일확장자
 	private String sFileName; // 실제 저장 파일
-
+	// 검색 
+	private String sort;
+    private String Keyword;
+    // 카운트
+    private int totalCount;
 	// GETTER, SETTER
 	public int getPostKey() {
 		return postKey;

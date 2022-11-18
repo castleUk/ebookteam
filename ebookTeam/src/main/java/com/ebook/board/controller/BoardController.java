@@ -45,7 +45,11 @@ public class BoardController {
 		
 		// 현재 메뉴 정보
 		MenuVo pageMenu = menuService.getPageMenu(postCategory);
-
+		
+		// 검색
+		
+		// 정렬
+		
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
 		mv.addObject("boardList", boardList);
@@ -76,13 +80,14 @@ public class BoardController {
 		MenuVo pageMenu = menuService.getPageMenu(postCategory);
 		
 		// 커뮤니티 댓글 갯수
-		//CommentVo comm = 
+		CommentVo comm = boardService.getCommentcount(postKey);
 				
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
 		mv.addObject("board",board);
 		mv.addObject("commList",commList);
 		mv.addObject("pageMenu", pageMenu);
+		mv.addObject("comm", comm);
 		
 		mv.setViewName("/board/boardView");
 		return mv;
@@ -254,45 +259,35 @@ public class BoardController {
 
 	
 	// 댓글 작성
-	@RequestMapping("/view/commForm")
-	public ModelAndView commentForm(int postKey) {
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("postKey", postKey);
-		
-		mv.setViewName("/board/comm/boardWrite");
-		return mv;
-	}
-	
 	@RequestMapping("/view/comment")
 	public ModelAndView comment(int postKey, CommentVo comm) {
 		ModelAndView mv = new ModelAndView();
 
 		// 커뮤니티 댓글 작성
 		boardService.insertComment(comm);
-		
-		mv.addObject("postKey", postKey);
+
 		mv.addObject("comm",comm);
 		
-		mv.setViewName("redirect:/board/view/?postCategory=" + comm.getPostCategory());
+		mv.setViewName("redirect:/board/view/?postCategory=" + comm.getPostCategory() + 
+				"&postKey=" + postKey);
 		return mv;
 	}
 	
 	// 댓글 정보 가져오기
-	@RequestMapping("/view/updateForm")
+	/*@RequestMapping("/view/commUpdateForm")
 	public ModelAndView commentUpdateForm(int commIdx) {
 		ModelAndView mv = new ModelAndView();
 		
 		// 정보 가져오기
 		CommentVo comm = boardService.getComment(commIdx);
-		mv.addObject("commIdx", commIdx);
+		mv.addObject("comm", comm);
 		
-		mv.setViewName("/board/comm/boardUpdate");
+		mv.setViewName("/board/comm/commentUpdate");
 		return mv;
 	}
 	
 	// 댓글 수정
-	@RequestMapping("/view/update")
+	@RequestMapping("/view/commUpdate")
 	public ModelAndView commentUpdate(CommentVo comm) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -302,20 +297,20 @@ public class BoardController {
 		mv.setViewName("redirect:/board/view/?postCategory=" + comm.getPostCategory() +
 				"&postKey" + comm.getPostKey());
 		return mv;
-	}
+	}*/
 	
 	// 댓글 삭제
-	@RequestMapping("/view/delete")
-	public ModelAndView commentDelete(int commIdx, int postKey, String postCategory) {
+
+	@RequestMapping("/view/commDelete")
+	public ModelAndView commentDelete(String postCategory, int postKey, int commIdx) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.deleteComment(commIdx);
-		mv.addObject("postCategory", postCategory);
-		mv.addObject("postKey", postKey);
+		boardService.deleteComment(postKey);
+		mv.addObject("commIdx",commIdx);
 		
-		mv.setViewName("redirect:/board/view");
+		mv.setViewName("redirect:/board/view/?postCategory=" + postCategory +
+				"&postKey" + postKey);
 		return mv;
 	}
-
 	
 }

@@ -15,18 +15,19 @@
 	<script src="/js/common.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		$('#WriteForm').on('submit', function(e){
+		//form
+		$('form').on('submit', function(e){
 			// 필수 입력
-			const titleEl = $('#postTitle');
-			const contEl = $('#postContent');
-			// 제목
+			const titleEl = $('[name=postTitle]');
+			const contEl = $('[name=postContent]');
 			if(titleEl.val().trim() == ""){
-				$('#postTitle').focus();
+				alert("제목을 입력하세요.");
+				$('input').css('border-color', '#F25041');
 				return false;
-			} 
-			// 내용
+			}
 			if(contEl.val().trim() == ""){
-				$('#postContent').focus();
+				alert("내용을 입력하세요.");
+				$('input').css('border-color', '#F25041');
 				return false;
 			}
 		});
@@ -54,39 +55,57 @@
 			<%@ include file="/WEB-INF/include/common/header.jsp" %>
 			<!-- header -->
 			<div class="contents view">
-				<%@ include file="/WEB-INF/include/common/BoardSidebar.jsp" %>
+				<%@ include file="/WEB-INF/include/common/manageSidebar.jsp" %>
 				<div class="content">
 					<div class="container">
 						<div class="content-header">
-							<h2>${ pageMenu.menu_name } 수정</h2>
+							<h2>도서 추가</h2>
 						</div>
 						
 						<div class="content-body">
-							<form id="WriteForm" class="form-table" action="/board/update" method="POST">
-								<input type="hidden"  name="postKey" value="${ board.postKey }" />
-								<input type="hidden"  name="postCategory" value="${ board.postCategory }" />
-								<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
+							<form class="form-table" action="/manage/book/write" method="POST">
 								<table class="table">
 									<tr>
-										<th>제목</th>
-										<td><input type="text" id="postTitle" name="postTitle" value="${board.postTitle}" placeholder="제목을 입력하세요." required/></td>
+										<td><input type="hidden" name="menu_seq" value="${menu.menu_seq}" />
 									</tr>
 									<tr>
-										<th>작성자</th>
-										<td>${sessionScope.user.userId}</td>
+										<th></th>
+										<td><input type="hidden" class="bookkey" name="bookkey" /></td>
+									</tr>
+									<tr>
+										<th>이미지</th>
+										<td><input type="text" class="image" name="image"/></td>
+									</tr>
+						
+									<tr>
+										<th>제목</th>
+										<td><input type="text" class="title" name="title"/></td>
+									</tr>
+									<tr>
+										<th>저자</th>
+										<td><input type="text" class="author" name="author"/></td>
+									</tr>
+									<tr>
+										<th>출판사</th>
+										<td><input type="text" class="publisher" name="publisher"/></td>
+									</tr>
+									<tr>
+										<th>표준 도서 번호</th>
+										<td><input type="text" class="isbn" name="isbn" /></td>
 									</tr>
 									<tr>
 										<th>내용</th>
-										<td class="cont">
-											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요." required>${board.postContent}</textarea>
+										<td class="description">
+											<textarea name="description" class="description"></textarea>
 										</td>
 									</tr>
+									
 								</table>
 							
 								<div class="btn-group">
-									<button id="btnList" class="btn btn-secondary">목록</button>
-									<button id="btnUpdate" class="btn btn-primary right">수정</button>
-									<button id="btnClose" class="btn btn-secondary">취소</button>
+									<button id="btnList" class="btn btn-secondary" href="/manage/books">목록</button>
+									<button type ="submit" id="btnUpdate" class="btn btn-primary right">추가</button>
+									<button id="btnClose" class="btn btn-secondary" onclick="history.back()">취소</button>
 								</div>
 							</form>
 						</div>

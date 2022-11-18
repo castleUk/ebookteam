@@ -26,6 +26,8 @@ public interface BoardService {
 	// 삭제
 	void deleteBoard(int postKey);
 	
+	/* ------------------------------------------------------------ */
+	
 	// 댓글 목록
 	List<CommentVo> getCommList(int postKey);
 	
@@ -39,7 +41,12 @@ public interface BoardService {
 	void updateComment(CommentVo comm);
 	
 	// 댓글 삭제
-	void deleteComment(int commIdx);
+	void deleteComment(int postKey);
+	
+	// 댓글 갯수
+	CommentVo getCommentcount(int postKey);
+	
+	/* ------------------------------------------------------------ */
 	
 	// 도서 요청 목록
 	List<RequestVo> getRequestList(String postCategory);
@@ -50,8 +57,12 @@ public interface BoardService {
 	// 도서 요청 삭제
 	void deleteBookRequest(int req_key);
 	
+	/* ------------------------------------------------------------ */
+	
 	// qna 답글쓰기
 	void insertReplayBoard(BoardVo board);
+	
+
 	
 
 }

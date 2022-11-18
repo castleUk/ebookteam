@@ -85,7 +85,7 @@
 								<table class="table">
 									<tr>
 										<th>제목</th>
-										<td><input type="text"  id="postTitle" name="postTitle" value="[답변] ${board.postTitle}" placeholder="제목을 입력하세요."/></td>
+										<td><input type="text"  id="postTitle" name="postTitle" value="[답변] ${board.postTitle}" placeholder="제목을 입력하세요." required/></td>
 									</tr>
 									<tr>
 										<th>작성자</th>
@@ -94,7 +94,7 @@
 									<tr>
 										<th>내용</th>
 										<td>
-											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요."></textarea>
+											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요." required></textarea>
 										</td>
 									</tr>
 								</table>

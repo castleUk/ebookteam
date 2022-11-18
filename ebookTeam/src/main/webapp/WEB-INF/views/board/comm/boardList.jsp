@@ -2,23 +2,49 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-<div class="board-comment-list">
-	<h4>댓글 목록</h4>				
-	<ul class="comment-list">
-		<c:forEach var="comm" items="${commList}">
-		<li class="item">
-			<div class="count">
-				<span>${comm.userId}</span>
-			</div>
-			<div class="form-item">
-				<div class="group">
-					<div class="date">${comm.commDate}</div>
-					<a id="btnUpdate" class="btn ml-auto" href="/board/view/updateForm?commIdx=${comm.commIdx}">수정</a>
-					<a id="btnDelete" class="btn" href="/board/view/delete?postCategory=${board.postCategory}&postKey=${board.postKey}&commIdx=${comm.commIdx}">삭제</a>
-				</div>
-				<div class="cont">${comm.commCont}</div>
-			</div>
-		</li>
-		</c:forEach>
-	</ul>
+<div class="content-middle">
+	<div class="btn-group">
+		<c:choose>
+			<c:when test="${not empty user}">
+				<a class="btn btn-primary" id="btnCreate" href="/board/writeForm?postCategory=${postCategory}">등록</a>
+			</c:when>
+		</c:choose>
+		<select name="sortSelect">
+			<option value="sorting">순번</option>
+			<option value="postDate">작성일</option>
+			<option value="postViewCount">조회수</option>
+		</select>
+	</div>
 </div>
+
+<div class="content-body">
+	<div class="list-table">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>										
+					<th>작성자</th>										
+					<th>작성일</th>				
+					<th>조회수</th>										
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="board" items="${boardList}">
+					<tr>
+						<td>${board.sorting}</td>
+						<td><a id="boardView" href="/board/view?postCategory=${board.postCategory}&postKey=${board.postKey}">${board.postTitle}</a></td>
+						<td>${board.userId}</td>
+						<td>${board.postDate}</td>
+						<td>${board.postViewCount}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	
+		<div class="page-group">
+			<button> < </button>
+			<button class="active"> 1 </button>
+			<button> > </button>
+		</div>
+	</div>

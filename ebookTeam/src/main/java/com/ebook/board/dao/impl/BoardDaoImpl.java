@@ -91,8 +91,15 @@ public class BoardDaoImpl implements BoardDao {
 
 	// 댓글 삭제
 	@Override
-	public void deleteComment(int commIdx) {
-		sqlSession.delete("Board.CommentDelete", commIdx);
+	public void deleteComment(int postKey) {
+		sqlSession.delete("Board.CommentDelete", postKey);
+	}
+	
+	// 댓글 갯수
+	@Override
+	public CommentVo getCommentcount(int postKey) {
+		CommentVo comm = sqlSession.selectOne("Board.CommentCount", postKey);
+		return comm;
 	}
 	
 	
@@ -129,7 +136,7 @@ public class BoardDaoImpl implements BoardDao {
 		sqlSession.insert("Board.ReplayBoardInsert", board);
 		
 	}
-	
+
 
 
 }

@@ -7,14 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.ebook.manage.service.BookService;
 import com.ebook.manage.service.MenuService;
 import com.ebook.manage.service.RequestService;
-import com.ebook.subscr.service.SubscribeService;
 import com.ebook.manage.service.UserService;
+import com.ebook.manage.vo.BookVo;
 import com.ebook.manage.vo.MenuVo;
 import com.ebook.manage.vo.RequestVo;
-import com.ebook.subscr.vo.SubscrVo;
 import com.ebook.manage.vo.UserVo;
+import com.ebook.subscr.service.SubscribeService;
+import com.ebook.subscr.vo.SubscrVo;
 
 @Controller()
 @RequestMapping("manage")
@@ -31,6 +34,9 @@ public class ManageController {
 	
 	@Autowired
 	private RequestService requestService;
+	
+	@Autowired
+	private BookService bookService;
 			
 	// 회원관리
 	@RequestMapping("/user")
@@ -301,16 +307,102 @@ public class ManageController {
 		return mv;
 	}
 	
+	
 	// 도서 관리
 	@RequestMapping("/books")
-	public ModelAndView bookList() {
+	public ModelAndView bookList(BookVo bookVo) {
 		ModelAndView mv = new ModelAndView();
 		
 		// sideMenu
 		List<MenuVo> manageMenu = menuService.getManageMenu();
-
+		
+        //도서 목록 
+		List<BookVo> bookList = bookService.getBookList(bookVo);
+		
+		mv.addObject("bookList",bookList);
+		
 		mv.addObject("manageMenu", manageMenu);
 		mv.setViewName("manage/books/bookList");
 		return mv;
 	}
+	
+	//도서 등록
+	@RequestMapping("book/writeForm")
+	public ModelAndView bookWriteForm(String postCategory) {
+		ModelAndView mv = new ModelAndView();
+		
+		// sideMenu
+		List<MenuVo> manageMenu = menuService.getManageMenu();
+		
+		
+		mv.addObject("manageMenu", manageMenu);
+		mv.addObject("postCategory", postCategory);
+		mv.setViewName("manage/books/bookwrite");
+		
+		return mv;
+		
+		
+		
+	}
+	 
+	@RequestMapping("/book/write")
+	public ModelAndView bookWrite(BookVo bookVo) {
+		ModelAndView mv = new ModelAndView();
+		
+		bookService.insertBook(bookVo);	
+		
+		mv.addObject("book", bookVo);
+		mv.setViewName("redirect:/manage/books");
+		return mv;
+	
+	}
+	
+	
+	
+	//도서 수정
+	@RequestMapping("book/updateForm")
+	public ModelAndView bookUpdateForm(int bookkey, String postCategory) {
+		ModelAndView mv = new ModelAndView();
+		
+		// sideMenu
+		List<MenuVo> manageMenu = menuService.getManageMenu();
+				
+				
+		//내용 가져오기
+	    BookVo bookVo = bookService.getBook(bookkey);
+	    
+	    mv.addObject("manageMenu", manageMenu);
+	    mv.addObject("book", bookVo);
+	    mv.setViewName("manage/books/bookupdate");
+		return mv;
+		
+		
+	}
+	@RequestMapping("/book/update")
+	public ModelAndView bookUpateForm(BookVo bookVo) {
+		
+		
+		bookService.updateBook(bookVo);
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("book", bookVo);
+		mv.setViewName("redirect:/manage/books");
+		
+		return mv;
+		
+	}
+	
+	
+	//도서 삭제
+	@RequestMapping("/book/delete")
+	public ModelAndView bookDelete(int bookkey,String postCategory) {
+		ModelAndView mv =new ModelAndView();
+		
+		bookService.deleteBook(bookkey);
+		
+		mv.addObject("bookkey",bookkey);
+		mv.setViewName("redirect:/manage/books");
+		return mv;
+	}
+	
 }
