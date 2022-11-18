@@ -107,6 +107,18 @@ a:hover{
   font-family: 'Roboto', 'Noto Sans KR';
 }
 
+h1, h2, h3, h4, h5, h6{
+	font-weight: 600;
+	margin-bottom: 0px;
+}
+
+h2{
+	font-size: 1.5em;
+	padding: 0px;
+	font-weight: 600;
+	margin-bottom: 0px;
+}
+
 /*align*/
 .t-left{
   text-align: left;
@@ -169,6 +181,7 @@ button, .btn, input[type=submit], input[type=button]{
 	border-radius: 5px;
 	outline: none;
 	cursor: pointer;
+	outline: none;
 }
 
 .btn-primary{
@@ -296,6 +309,10 @@ table .cont{
   width: 20%;
 }
 
+.modal-backdrop{
+	display: none;
+}
+
 /*icon*/
 .ico{
 	width: 24px;
@@ -303,7 +320,16 @@ table .cont{
 	opacity: 0.5;
 }
 
-
+/*card*/
+.card{
+	border: 0px;
+	border-radius: 0;
+}
+.card-img-top{
+	height: 100%;
+  border-radius: 10px;
+ 	border: 1px solid #f2f2f2;
+}
 
 
 

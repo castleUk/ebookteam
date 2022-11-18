@@ -6,11 +6,10 @@
 <mapper namespace="Board">
 	<!-- 게시판 목록 --> 
   <select id="BoardList" resultType="com.ebook.board.vo.BoardVo">
-		SELECT P.POSTKEY, M.MENU_CTGR, M.POSTCATEGORY, P.USERID, P.POSTTITLE, P.POSTCONTENT,
-		TO_CHAR(P.POSTDATE, 'YYYY-MM-DD') POSTDATE, P.POSTVIEWCOUNT, P.BNUM, P.LVL, P.STEP, P.NREF
-		FROM POST P, BOARDMENUS M
-		WHERE P.POSTCATEGORY = M.POSTCATEGORY AND M.POSTCATEGORY = #{postCategory}
-		ORDER BY P.POSTKEY DESC
+		SELECT ROW_NUMBER() OVER(ORDER BY POSTKEY) SORTING, POSTKEY, POSTCATEGORY, USERID, POSTTITLE, POSTCONTENT, TO_CHAR(POSTDATE, 'YYYY-MM-DD') POSTDATE, POSTVIEWCOUNT, BNUM, LVL, STEP, NREF
+		FROM POST
+		WHERE POSTCATEGORY = #{postCategory}
+		ORDER BY SORTING DESC
   </select>
   
   <!-- 게시판 보기 --> 
@@ -34,8 +33,8 @@
   <insert id="BoardInsert">
   	INSERT INTO POST(POSTKEY, POSTCATEGORY, USERID, POSTTITLE, POSTCONTENT, POSTDATE, POSTVIEWCOUNT, BNUM, LVL, STEP, NREF) 
 		VALUES(
-		    POST_SEQ.NEXTVAL, 
-		    #{postTitle}, #{postContent}, SYSDATE, #{userId}, #{postCategory}, 0, POST_SEQ.NEXTVAL, 0, 0, POST_SEQ.NEXTVAL
+		    POST_SEQ.NEXTVAL, #{postCategory}, #{userId}, #{postTitle}, #{postContent}, SYSDATE, 0, 
+		    POST_SEQ.NEXTVAL, 0, 0, POST_SEQ.NEXTVAL
 		)
   </insert>
   
@@ -115,12 +114,12 @@
   <!-- 댓글 삭제 -->
   <delete id="CommentDelete">
   	DELETE FROM BOARD_COMMENT
-		WHERE COMMIDX = #{commIdx}
+		WHERE POSTKEY = #{postKey} AND COMMIDX = #{commIdx}
   </delete>
 
   <!-- 댓글 건수 -->
   <select id="CommentCount">
-  	SELECT COUNT(COMMIDX)
+  	SELECT COUNT(COMMIDX) COMMCOUNT
   	FROM BOARD_COMMENT
 		WHERE POSTCATEGORY = #{postCategory} AND COMMIDX > 0;
   </select>
@@ -146,7 +145,28 @@
   	DELETE FROM REQUEST
   	WHERE REQ_KEY = #{req_key}
   </delete>
+  
+   <!-- Q&A 답글 -->
+	  <insert id="ReplayBoardInsert">
+	  	INSERT INTO POST(POSTKEY, POSTCATEGORY, USERID, POSTTITLE, POSTCONTENT, POSTDATE, POSTVIEWCOUNT, BNUM, LVL, STEP, NREF) 
+			VALUES(
+			    POST_SEQ.NEXTVAL, 
+			    #{postCategory}, #{userId}, #{postTitle}, #{postContent}, SYSDATE, 0, 
+			    #{bNum}, #{lvl} +1, #{step} + 1, #{nref}
+			)
+	  </insert>
+	  
+	  <!-- Q&A 답글 수정 -->
+	  <update id="ReplayBoardUpdate">
+	  	UPDATE POST
+			SET STEP = STEP + 1
+			WHERE POSTCATEGORY = #{postCategory}
+						AND NREF = #{ nref }
+						AND STEP > #{ step }
+	  </update>
+  
 </mapper>
+
 
 
 

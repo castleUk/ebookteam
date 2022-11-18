@@ -32,11 +32,15 @@
 						<div class="content-header">
 							<h2>${ pageMenu.menu_name }</h2>
 						</div>
-						<c:choose >
-							<c:when test="${postCategory eq 'notice' or postCategory eq 'commu' or postCategory eq 'qna'}">
+						<c:choose>
+							<c:when test="${postCategory eq 'qna' or postCategory eq 'notice'}">
+								<%@ include file="/WEB-INF/views/board/notice/boardList.jsp" %>
+							</c:when>
+							
+							<c:when test="${postCategory eq 'commu'}">
 								<div class="content-middle">
 									<div class="group-3">
-										<select name="searchSeclect" id="searchSeclect">
+										<select name="searchSelect" id="searchSelect">
 											<option value="all">전체</option>
 											<option value="postTitle">제목</option>
 											<option value="userId">작성자</option>
@@ -47,6 +51,7 @@
 									
 									<div class="btn-group">
 										<a class="btn btn-primary" id="btnCreate" href="/board/writeForm?postCategory=${postCategory}">등록</a>
+										
 										<select name="sortSelect">
 											<option value="all">작성일순</option>
 											<option value="postTitle">제목순</option>
@@ -64,9 +69,6 @@
 													<th>제목</th>										
 													<th>작성자</th>										
 													<th>작성일</th>			
-													<c:if test="${postCategory eq 'refer'}" var="refer" scope="session">
-														<th>첨부파일</th>
-													</c:if>
 													<c:if test="${postCategory eq 'commu'}" var="commu" scope="session">
 														<th>댓글</th>
 													</c:if>				

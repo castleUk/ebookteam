@@ -13,6 +13,23 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="/js/common.js"></script>
     <script type="text/javascript">
+        // $(function(){
+        //     $('#WriteForm').on('submit', function(e){
+        //         // 필수 입력
+        //         const numEl = $('#cardNum');
+        //         const pwEl = $('#cardPw');
+        //         // 카드 번호
+        //         if(numEl.val().trim() == ""){
+        //             $('#cardNum').focus();
+        //             return false;
+        //         }
+        //         // 카드 비밀번호
+        //         if(pwEl.val().trim() == ""){
+        //             $('#cardPw').focus();
+        //             return false;
+        //         }
+        //     });
+        // });
 
     </script>
     
@@ -55,11 +72,11 @@
                             </tr>
                             <tr>
                                 <th>카드 번호</th>
-                                <td><input type="number" name="cardNum" placeholder="카드 번호" maxlength="16" oninput="maxLengthnum(this)"/></td>
+                                <td><input type="number" name="cardNum" placeholder="카드 번호" maxlength="16" oninput="maxLengthnum(this)" required/></td>
                             </tr>
                             <tr>
                                 <th>카드 비밀번호</th>
-                                <td><input type="number" name="cardPw" placeholder="카드 비밀번호" maxlength="4" oninput="maxLengthnum(this)"/></td>
+                                <td><input type="number" name="cardPw" placeholder="카드 비밀번호" maxlength="4" oninput="maxLengthnum(this)" required/></td>
                             </tr>
                         </table>
 

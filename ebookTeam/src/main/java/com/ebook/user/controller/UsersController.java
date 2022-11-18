@@ -101,6 +101,7 @@ public class UsersController {
 
     @PostMapping("/user/userupdate")
     public String update(UsersVO usersVO, HttpSession httpSession) throws Exception {
+
         usersService.update(usersVO);
 
         httpSession.invalidate();

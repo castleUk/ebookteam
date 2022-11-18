@@ -15,19 +15,18 @@
 	<script src="/js/common.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		//form
-		$('form').on('submit', function(e){
+		$('#WriteForm').on('submit', function(e){
 			// 필수 입력
-			const titleEl = $('[name=postTitle]');
-			const contEl = $('[name=postContent]');
+			const titleEl = $('#postTitle');
+			const contEl = $('#postContent');
+			// 제목
 			if(titleEl.val().trim() == ""){
-				alert("제목을 입력하세요.");
-				$('input').css('border-color', '#F25041');
+				$('#postTitle').focus();
 				return false;
-			}
+			} 
+			// 내용
 			if(contEl.val().trim() == ""){
-				alert("내용을 입력하세요.");
-				$('input').css('border-color', '#F25041');
+				$('#postContent').focus();
 				return false;
 			}
 		});
@@ -63,22 +62,23 @@
 						</div>
 						
 						<div class="content-body">
-							<form class="form-table" action="/board/update" method="POST">
+							<form id="WriteForm" class="form-table" action="/board/update" method="POST">
 								<input type="hidden"  name="postKey" value="${ board.postKey }" />
 								<input type="hidden"  name="postCategory" value="${ board.postCategory }" />
+								<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
 								<table class="table">
 									<tr>
 										<th>제목</th>
-										<td><input type="text" class="chk" name="postTitle" value="${board.postTitle}" placeholder="제목을 입력하세요."/></td>
+										<td><input type="text" id="postTitle" name="postTitle" value="${board.postTitle}" placeholder="제목을 입력하세요."/></td>
 									</tr>
 									<tr>
 										<th>작성자</th>
-										<td>${board.userId}</td>
+										<td>${sessionScope.user.userId}</td>
 									</tr>
 									<tr>
 										<th>내용</th>
 										<td class="cont">
-											<textarea name="postContent" class="chk" placeholder="내용을 입력하세요.">${board.postContent}</textarea>
+											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요.">${board.postContent}</textarea>
 										</td>
 									</tr>
 								</table>

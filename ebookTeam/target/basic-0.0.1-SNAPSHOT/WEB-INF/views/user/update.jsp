@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="/css/custom.css"/>
     <link rel="stylesheet" href="/css/media.css"/>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script type="text/javascript">
-    </script>
 </head>
 </head>
 <body>
@@ -30,7 +28,7 @@
                     </div>
 
                     <div class="content-body">
-                        <form class="form-table" method="post">
+                        <form id= "form-userUpdate" class="form-table">
                             <tr>
                                 <th>이름</th>
                                 <td><input type="text" class="disabled" name="userName" placeholder="이름"
@@ -43,12 +41,12 @@
                             </tr>
                             <tr>
                                 <th>비밀번호</th>
-                                <td><input type="password" name="userPass" placeholder="비밀번호" value="${user.userPass}"/>
+                                <td><input type="password" id="userPass2"  name="userPass" placeholder="비밀번호" value="${user.userPass}"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>비밀번호 확인</th>
-                                <td><input type="password" name="userPass" placeholder="비밀번호 확인"/></td>
+                                <td><input type="password" id="userPassCheck" name="userPassCheck" placeholder="비밀번호 확인"/></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
@@ -67,7 +65,7 @@
                             </table>
 
                             <div class="btn-group">
-                                <button type="submit" formaction="/user/userupdate">회원정보수정</button>
+                                <button type="button" id="btnUserUpdate">회원정보수정</button>
                                 <button type="button" onclick="location.href='/user/delete'">회원탈퇴</button>
                             </div>
                         </form>

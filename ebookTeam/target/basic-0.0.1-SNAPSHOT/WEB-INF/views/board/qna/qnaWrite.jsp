@@ -15,13 +15,22 @@
 	<script src="/js/common.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			// 삭제 버튼
-			/*$('#btnDelete').on('click', function(){
-				var deleteYN = confirm("삭제하시겠습니까?");
-				if(deleteYN == true){
-					formObj.submit();
+			$('#WriteForm').on('submit', function(e){
+				// 필수 입력
+				const titleEl = $('#postTitle');
+				const contEl = $('#postContent');
+				// 제목
+				if(titleEl.val().trim() == ""){
+					$('#postTitle').focus();
+					return false;
+				} 
+				// 내용
+				if(contEl.val().trim() == ""){
+					$('#postContent').focus();
+					return false;
 				}
-			});	*/
+			});
+			
 			$('.replay-form textarea').css('height','100px');
 		});
 	</script>
@@ -65,26 +74,27 @@
 							<!-- 답글 내용 -->
 							
 							<!-- 답글 쓰기-->
-							<form class="form-table replay-form" action="/board/replay">
+							<form id="WriteForm" class="form-table replay-form" action="/board/replay">
 								<input type="hidden"  name="postCategory" value="${board.postCategory}"/>
 								<input type="hidden"  name="postKey" value="${board.postKey}"/>
-					      <input type="hidden" name="bNum"    value="${board.bNum}" />   
-					      <input type="hidden" name="lvl"     value="${board.lvl}" />   
-					      <input type="hidden" name="step"    value="${board.step}" />   
-					      <input type="hidden" name="nref"    value="${board.nref}" /> 
+					      <input type="hidden"  name="bNum"    value="${board.bNum}" />   
+					      <input type="hidden"  name="lvl"     value="${board.lvl}" />   
+					      <input type="hidden"  name="step"    value="${board.step}" />   
+					      <input type="hidden"  name="nref"    value="${board.nref}" />
+					      <input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
 								<table class="table">
 									<tr>
 										<th>제목</th>
-										<td><input type="text" class="chk" name="postTitle" value="[답변] ${board.postTitle}" placeholder="제목을 입력하세요."/></td>
+										<td><input type="text"  id="postTitle" name="postTitle" value="[답변] ${board.postTitle}" placeholder="제목을 입력하세요."/></td>
 									</tr>
 									<tr>
 										<th>작성자</th>
-										<td><input type="text" class="chk" name="userId" value="${board.userId}" placeholder="아이디"/></td>
+										<td>${sessionScope.user.userId}</td>
 									</tr>
 									<tr>
 										<th>내용</th>
 										<td>
-											<textarea name="postContent" class="chk" placeholder="내용을 입력하세요."></textarea>
+											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요."></textarea>
 										</td>
 									</tr>
 								</table>

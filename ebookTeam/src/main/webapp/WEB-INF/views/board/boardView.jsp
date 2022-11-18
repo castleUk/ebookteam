@@ -69,11 +69,14 @@
 								</table>
 								<div class="btn-group">
 									<button id="btnList" class="btn btn-secondary mr-10">목록</button>
-									<c:if test="${sessionScope.user.userId=='admin2'}">
-									<a class="btn btn-primary" id="btnReplay" 
+									<c:choose>
+					        	<c:when test="${sessionScope.user.userId=='admin2'}">
+					          	<a class="btn btn-primary" id="btnReplay" 
 										href="/board/replayForm?postCategory=${board.postCategory}&postKey=${board.postKey}&bnum=${boardVo.bnum}&lvl=${boardVo.lvl}&step=${boardVo.step}&nref=${boardVo.nref}">답변</a>
-									</c:if>
-									<a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">수정</a>
+					          </c:when>
+
+					        </c:choose>
+					        <a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">수정</a>
 									<a class="btn btn-danger" id="btnDelete" href="/board/delete?postCategory=${board.postCategory}&postKey=${board.postKey}">삭제</a>
 								</div>
 							</div>

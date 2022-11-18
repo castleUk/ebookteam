@@ -74,6 +74,9 @@ public class BoardController {
 		
 		// 현재 메뉴 정보
 		MenuVo pageMenu = menuService.getPageMenu(postCategory);
+		
+		// 커뮤니티 댓글 갯수
+		//CommentVo comm = 
 				
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
@@ -203,6 +206,20 @@ public class BoardController {
 		
 	}
 	
+	// qna 답글쓰기 수정
+	@RequestMapping("/replayUpdate")
+	public ModelAndView qnaUpdate(BoardVo board) {
+		ModelAndView mv = new ModelAndView();
+
+		//boardService.insertReplayBoard(board);
+
+		mv.addObject("board", board);
+		
+		mv.setViewName("redirect:/board/list?postCategory=" + board.getPostCategory() );
+		return mv;
+		
+	}
+	
 	/* ------------------------------------------------------------ */
 	
 	
@@ -296,8 +313,7 @@ public class BoardController {
 		mv.addObject("postCategory", postCategory);
 		mv.addObject("postKey", postKey);
 		
-		mv.setViewName("redirect:/board/view?postCategory="+ postCategory +
-				"&postKey="+ postKey);
+		mv.setViewName("redirect:/board/view");
 		return mv;
 	}
 

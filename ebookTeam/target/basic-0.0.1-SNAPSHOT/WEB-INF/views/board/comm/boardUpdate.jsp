@@ -4,6 +4,7 @@
 <form class="comment-form" action="/board/view/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">
 	<input type="hidden"  name="postCategory" value="${comm.postCategory}"/>
 	<input type="hidden"  name="postKey" value="${comm.postKey}"/>
+	<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
 	<div class="input-form">
 		${comm.userId}
 	</div>

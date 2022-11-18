@@ -14,7 +14,7 @@
 				<div class="group">
 					<div class="date">${comm.commDate}</div>
 					<a id="btnUpdate" class="btn ml-auto" href="/board/view/updateForm?commIdx=${comm.commIdx}">수정</a>
-					<a id="btnDelete" class="btn" href="/board/view/delete?commIdx=${comm.commIdx}">삭제</a>
+					<a id="btnDelete" class="btn" href="/board/view/delete?postCategory=${board.postCategory}&postKey=${board.postKey}&commIdx=${comm.commIdx}">삭제</a>
 				</div>
 				<div class="cont">${comm.commCont}</div>
 			</div>

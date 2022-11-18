@@ -4,40 +4,30 @@
 
 <script type="text/javascript">
 	$(function(){
-		// 벨리데이션 체크
-		var formEl = $('form');
-		formEl.addEventListener('submit', function(e){
+		$('#WriteForm').on('submit', function(e){
 			// 필수 입력
-			const idEl = $('#userId');
-			const titleEl = $('#reqBook');
+			const bookEl = $('#reqBook');
 			const contEl = $('#reqCont');
-			
-			if(idEl == ""){
-				alert("아이디를 입력하세요.");
-				$('input').css('border-color', '#F25041');
+			// 제목
+			if(bookEl.val().trim() == ""){");
+				$('#reqBook').focus();
 				return false;
-			}
-			
-			if(titleEl == ""){
-				alert("책 제목을 입력하세요.");
-				$('input').css('border-color', '#F25041');
-				return false;
-			}
-			
-			if(contEl == ""){
-				alert("내용을 입력하세요.");
-				$('textarea').css('border-color', '#F25041');
+			} 
+			// 내용
+			if(contEl.val().trim() == ""){
+				$('#reqCont').focus();
 				return false;
 			}
 		});
 	});
 </script>
 
-<form class="request-form" action="/board/list/requestWrite?postCategory=${postCategory}" >
+<form id="WriteForm" class="request-form" action="/board/list/requestWrite?postCategory=${postCategory}" >
 	<input type="hidden"  name="postCategory" value="${postCategory}"/>
 	<input type="hidden" name="req_process" value="요청"/>
+	<input type="hidden" name="userId" value="${sessionScope.user.userId}"/>
 	<div class="input-form">
-		<input type="text" id="userId" name="userId" placeholder="아이디"/>
+		<input type="text" id="userId" name="userId" value="${sessionScope.user.userId}" disabled/>
 		<input type="text" id="reqBook" name="req_book" placeholder="책 제목"/>
 		<input type="text" id="reqProcess" name="req_process" value="요청" disabled/>
 	</div>
