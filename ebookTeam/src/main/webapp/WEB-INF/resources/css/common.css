@@ -5,8 +5,8 @@
 --------------------*/
 * {
 	box-sizing: border-box;
-	padding : 0; 
-	margin:0;	
+	padding : 0;
+	margin:0;
 }
 
 .d-block {
@@ -20,26 +20,26 @@
 
 /*flex*/
 .d-flex{
-  display: flex;
+	display: flex;
 }
 
 .row{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .col{
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 /*margin*/
 .m-auto{
-  margin: auto;
+	margin: auto;
 }
 .ml-auto{
-  margin-left: auto;
+	margin-left: auto;
 }
 .ml-10{
 	margin-left: 10px;
@@ -48,39 +48,39 @@
 	margin-left: 20px;
 }
 .mr-auto{
-  margin-right: auto;
+	margin-right: auto;
 }
 .mr-10{
-  margin-right: 10px;
+	margin-right: 10px;
 }
 .mr-20{
-  margin-right: 20px;
+	margin-right: 20px;
 }
 .mt-10{
-  margin-top: 10px;
+	margin-top: 10px;
 }
 .mt-20{
-  margin-top: 20px;
+	margin-top: 20px;
 }
 .mb-10{
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 .mb-20{
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 /*w, h*/
 .w-auto{
-  width: auto;
+	width: auto;
 }
 .h-auto{
-  height: auto;
+	height: auto;
 }
 .w-100{
-  width: 100%;
+	width: 100%;
 }
 .h-100{
-  height: 100%;
+	height: 100%;
 }
 
 /*list*/
@@ -101,10 +101,10 @@ a:hover{
 
 /*text*/
 :lang(ko){
-  font-family: 'Noto Sans KR', 'Roboto';
+	font-family: 'Noto Sans KR', 'Roboto';
 }
 :lang(en){
-  font-family: 'Roboto', 'Noto Sans KR';
+	font-family: 'Roboto', 'Noto Sans KR';
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -121,13 +121,13 @@ h2{
 
 /*align*/
 .t-left{
-  text-align: left;
+	text-align: left;
 }
 .t-right{
-  text-align: right;
+	text-align: right;
 }
 .t-center{
-  text-align: center;
+	text-align: center;
 }
 
 /*form*/
@@ -142,8 +142,8 @@ input:focus, select:focus, textarea:focus{
 	border-color: #1E7AEB;
 }
 input[type="checkbox"]{
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 /*input group*/
@@ -163,8 +163,8 @@ input[type="checkbox"]{
 
 /*button, btn*/
 .btn-group{
- 	display: flex;
-	padding: 20px 0;	
+	display: flex;
+	padding: 20px 0;
 }
 .btn-group .right{
 	margin-left: auto !important;
@@ -199,35 +199,35 @@ button, .btn, input[type=submit], input[type=button]{
 }
 
 .btn-secondary{
-  background-color: #B7B7B7;
-  color: #fff;
+	background-color: #B7B7B7;
+	color: #fff;
 }
 .btn-secondary a{
-  color: #fff;
+	color: #fff;
 }
 .btn-secondary:hover{
-  background-color: #a3a0a0;
+	background-color: #a3a0a0;
 }
 
 .btn-danger{
-  background-color: #F25041;
-  color: #FFFFFF;
+	background-color: #F25041;
+	color: #FFFFFF;
 }
 
 .btn-warning{
-  background-color: #F2CB05;
+	background-color: #F2CB05;
 }
 
 /*table*/
 table, .table, .table-list{
-  border-collapse: collapse;
-  width: 100%;
+	border-collapse: collapse;
+	width: 100%;
 }
 
 tr th, tr td{
-  font-size: 14px;
-  text-align: left;
-  padding: 10px;
+	font-size: 14px;
+	text-align: left;
+	padding: 10px;
 }
 
 table .cont{
@@ -248,34 +248,34 @@ table .cont{
 
 /*modal*/
 .modal{
-  background-color: rgba(0,0,0,0.3);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  z-index: 1;
+	background-color: rgba(0,0,0,0.3);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 1;
 }
 
 .modal-content{
-  position: absolute;
-  background-color: #ffffff;
-  width: 80%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
-  transition: 0.2s;
+	position: absolute;
+	background-color: #ffffff;
+	width: 80%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: 0 0 5px 1px rgba(0,0,0,0.3);
+	transition: 0.2s;
 }
 
 .modal-header{
-  display: flex;
+	display: flex;
 }
 .modal-header, .modal-body, .modal-footer{
-  padding: 10px;
+	padding: 10px;
 }
 .modal-body input{
 	margin-bottom: 10px;
@@ -286,27 +286,27 @@ table .cont{
 	cursor: pointer;
 }
 .modal-footer{
-  display: flex;
+	display: flex;
 }
 
 .modal-footer .btn-group{
-  display: block;
-  margin-left: auto;
-} 
+	display: block;
+	margin-left: auto;
+}
 .modal-footer .btn-group button{
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
 .modal-m .modal-content{
-  width: 50%;
+	width: 50%;
 }
 
 .modal-s .modal-content{
-  width: 30%;
+	width: 30%;
 }
 
 .modal-xs .modal-content{
-  width: 20%;
+	width: 20%;
 }
 
 .modal-backdrop{
@@ -327,8 +327,8 @@ table .cont{
 }
 .card-img-top{
 	height: 100%;
-  border-radius: 10px;
- 	border: 1px solid #f2f2f2;
+	border-radius: 10px;
+	border: 1px solid #f2f2f2;
 }
 
 .pagination li{
@@ -338,11 +338,6 @@ table .cont{
 .pagination ul{
 	margin: auto;
 }
-
-
-
-
-
 
 
 

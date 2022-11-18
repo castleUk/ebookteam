@@ -64,7 +64,7 @@
   <select id="BoardPage" resultType="com.ebook.board.vo.BoardVo">
   	SELECT POSTKEY, POSTCATEGORY, USERID, POSTTITLE, POSTCONTENT, POSTDATE, POSTVIEWCOUNT, BNUM, LVL, STEP, NREF
   	FROM (
-  		SELECT ROW_NUMBER() OVER(ORDER BY POSTKEY DESC) BOARDSORT,
+  		SELECT ROW_NUMBER() OVER(ORDER BY POSTKEY DESC) SORTING,
   		POSTKEY, POSTCATEGORY, USERID, POSTTITLE, POSTCONTENT, POSTDATE, POSTVIEWCOUNT, BNUM, LVL, STEP, NREF
   		FROM POST
   		WHERE POSTCATEGORY = #{postCategory}
@@ -74,8 +74,8 @@
   </select>
   
   <!-- 총 갯수 -->
-  <select id="BoardCount" resultType="_int">
-  	SELECT COUNT(POSTKEY) AS totalCount
+  <select id="BoardCount" resultType="com.ebook.board.vo.PageVo">
+  	SELECT COUNT(POSTKEY) AS TOTALCOUNT
   	FROM POST
   	WHERE POSTCATEGORY = #{postCategory} AND POSTKEY > 0
   </select>
@@ -108,20 +108,20 @@
   <update id="CommentUpdate">
   	UPDATE BOARD_COMMENT
 		SET COMMCONT = #{commCont}
-		WHERE COMMIDX = #{commIdx}
+		WHERE POSTKEY = #{postKey} AND COMMIDX = #{commIdx}
   </update>
   
   <!-- 댓글 삭제 -->
-  <delete id="CommentDelete">
+  <delete id="CommentDelete"> 
   	DELETE FROM BOARD_COMMENT
 		WHERE POSTKEY = #{postKey} AND COMMIDX = #{commIdx}
   </delete>
 
   <!-- 댓글 건수 -->
-  <select id="CommentCount">
+  <select id="CommentCount" resultType="com.ebook.board.vo.CommentVo">
   	SELECT COUNT(COMMIDX) COMMCOUNT
   	FROM BOARD_COMMENT
-		WHERE POSTCATEGORY = #{postCategory} AND COMMIDX > 0;
+		WHERE POSTKEY = #{postKey} AND COMMIDX > 0
   </select>
   
   <!-- 도서 요청 목록 -->

@@ -4,18 +4,7 @@
 
 <script type="text/javascript">
 $(function(){
-	// 삭제 버튼
-	$('#btnDelete').on('click', function(){
-		var deleteYN = confirm("삭제하시겠습니까?");
-		if(deleteYN == true){
-			formObj.submit();
-		}
-		else if(deleteYN == false){
-			e.preventDefault();
-			e.stopPropagation();
-			return true;
-		}
-			
+
 	});
 });
 
@@ -33,7 +22,11 @@ $(function(){
 				<div class="group">
 					<div class="title">${request.req_book}</div>
 					<div class="date">${request.req_date}</div>
-					<a id="btnDelete" class="btn ml-auto"  href="/board/list/delete?postCategory=${request.postCategory}&req_key=${request.req_key}">삭제</a>
+					<c:choose>
+						<c:when test="${sessionScope.user.userId == request.userId}">
+							<a id="btnDelete" class="btn ml-auto"  href="/board/list/delete?postCategory=${request.postCategory}&req_key=${request.req_key}">삭제</a>
+						</c:when>
+					</c:choose>
 				</div>
 				<div class="cont">${request.req_cont}</div>
 			</div>

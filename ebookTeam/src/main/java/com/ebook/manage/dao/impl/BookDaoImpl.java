@@ -34,7 +34,7 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public void insertBook(BookVo bookVo) {
 	System.out.printf("DaoIm",bookVo);	
-	sqlSession.delete("Book.BookInsert", bookVo);
+	sqlSession.insert("Book.BookInsert", bookVo);
 	
 	}		
 	

@@ -74,21 +74,17 @@
 					          	<a class="btn btn-primary" id="btnReplay" 
 										href="/board/replayForm?postCategory=${board.postCategory}&postKey=${board.postKey}&bnum=${boardVo.bnum}&lvl=${boardVo.lvl}&step=${boardVo.step}&nref=${boardVo.nref}">답변</a>
 					          </c:when>
-
+					          
+										<c:when test="${sessionScope.user.userId == board.userId}">
+											<a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">수정</a>
+											<a class="btn btn-danger" id="btnDelete" href="/board/delete?postCategory=${board.postCategory}&postKey=${board.postKey}">삭제</a>
+										</c:when>
 					        </c:choose>
-					        <a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">수정</a>
-									<a class="btn btn-danger" id="btnDelete" href="/board/delete?postCategory=${board.postCategory}&postKey=${board.postKey}">삭제</a>
 								</div>
 							</div>
 							
 							<c:if test="${board.postCategory eq 'commu'}" var="commu" scope="session">
-								<!-- 댓글 -->
-								<%@ include file="/WEB-INF/views/board/comm/boardWrite.jsp" %>
-								<!-- 댓글 -->
-								
-								<!-- 댓글 목록 -->
-								<%@ include file="/WEB-INF/views/board/comm/boardList.jsp" %>
-								<!-- 댓글 목록 -->
+								<%@ include file="/WEB-INF/views/board/comm/boardView.jsp" %>
 							</c:if>
 						</div>
 					</div>

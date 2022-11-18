@@ -15,6 +15,11 @@
 	<script type="text/javascript">
 		$(function(){ });
 	</script>
+	
+	<style>
+	
+	
+	</style>
 </head>
 <body>
 	<div class="wrapper">
@@ -36,16 +41,18 @@
 									<option value="postTitle">제목</option>
 									<option value="userId">작성자</option>
 								</select>
+								
 								<input type="search" name="searchInput"/>
 								<button class="btn btn-primary">검색</button>
 							</div>
 							
 							<div class="btn-group">
 								<select name="sortSelect">
-									<option value="joinDate">가입순</option>
-									<option value="userId">아이디순</option>
-									<option value="userId">조회순</option>
+									<option value="title">제목</option>
+									<option value="author">저자</option>
+									<option value="publisher">출판사</option>
 								</select>
+								<a class="btn btn-primary" href="/manage/book/writeForm">등록</a>
 							</div>
 						</div>
 						<div class="content-body">
@@ -54,24 +61,30 @@
 									<thead>
 										<tr>
 											<th>번호</th>
-											<th>이름</th>										
-											<th>아이디</th>										
-											<th>이메일</th>										
-											<th>연락처</th>										
-											<th>가입일</th>										
-											<th></th>										
+											<th>이미지</th>
+											<th>제목</th>											
+											<th>저자</th>										
+											<th>도서 번호</th>										
+											<th>출판사</th>																		
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>관리자</td>
-											<td>admin</td>
-											<td>admin@admin.com</td>
-											<td>010-1122-3344</td>
-											<td>2022-11-01</td>
-											<td class="t-center"><a class="btn btn-primary" href="/manage/user/view">보기</a></td>
-										</tr>
+											<c:forEach items="${bookList}" var="list">
+												<tr>
+													<td>${list.bookkey}</td>
+													<td><img src="${list.image}" width="230" height="270" class="card-img-top"
+			                                            alt="..."></td>
+													<td>${list.title}</td>
+													<td>${list.author}</td>
+													<td>${list.isbn}</td>
+													<td>${list.publisher}</td>
+													<td>
+														<td class="t-center"><a class="btn btn-primary" href="/manage/book/updateForm?bookkey=${list.bookkey}">수정</a></td>
+											            <td><a class="btn btn-danger" id="btnDelete"    href="/manage/book/delete?bookkey=${list.bookkey}">삭제</a></td>
+													</td>
+												</tr>
+											</c:forEach>
 									</tbody>
 								</table>
 							
