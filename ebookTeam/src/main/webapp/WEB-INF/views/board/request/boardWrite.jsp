@@ -33,7 +33,7 @@
 		<input type="text" id="reqProcess" name="req_process" value="요청" disabled/>
 	</div>
 	<div class="group-2">
-		<textarea class="cont" id="reqCont" name="req_cont" placeholder="댓글을 작성하세요." required></textarea>
+		<textarea class="cont" id="reqCont" name="req_cont" placeholder="요청 사유를 입력하세요." required></textarea>
 		<button type="submit" id="btnCreate" class="btn btn-primary">등록</button>
 	</div>
 </form>

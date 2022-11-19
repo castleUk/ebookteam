@@ -24,7 +24,6 @@
             FROM   BOOKS 
             WHERE  
 		        BOOKKEY = #{bookkey}
-
    </select>
    
    <insert id="BookInsert">

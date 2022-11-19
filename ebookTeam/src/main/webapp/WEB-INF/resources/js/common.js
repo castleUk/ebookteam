@@ -77,15 +77,31 @@ $(function(){
 
 	});
 
+	//내서재로 책 정보 보내기
+	$('#gobook').on('click',function(){
+		var isbn = $('#book_isbn').text()
+		console.log(isbn)
+		$.ajax({
+			url: "/book/libinsert",
+			method: "post",
+			data: {"isbn": isbn},
+		});
 
+		location.replace("/lib/myBook")
+	});
 
-
-
-
-
-
-
-
+	//모달창 정보 이동
+	// function PopupEmpInfo(clicked_element) {
+	// 	// var row_td = clicked_element.getElementsByTagName("td");
+	// 	var row_td = clicked_element.getElementsByClassName("book-item");
+	// 	// var modal = document.getElementById("myModal");
+	// 	document.getElementById("book_image").innerHTML = row_td[0].innerHTML;
+	// 	document.getElementById("book_title").innerHTML = row_td[1].innerHTML;
+	// 	document.getElementById("book_isbn").innerHTML = row_td[2].innerHTML;
+	// 	document.getElementById("book_author").innerHTML = row_td[3].innerHTML;
+	// 	document.getElementById("book_publisher").innerHTML = row_td[4].innerHTML;
+	// 	document.getElementById("book_description").innerHTML = row_td[5].innerHTML;
+	// }
 
 
 
@@ -124,6 +140,8 @@ $(function(){
     var slidePosition = currentIndex * (-100)+"%";
   	$(".slide-content").animate({ left:slidePosition },600);
 	},6000);
+
+
 
 
 
