@@ -8,7 +8,7 @@
     <insert id="bookinsert">
         MERGE INTO BOOKS
             USING dual
-            ON (isbn = ${isbn})
+            ON (isbn = #{isbn})
             WHEN NOT MATCHED THEN
                 INSERT (bookkey, title, description, link, isbn, author, publisher, image)
                     values (book_seq.nextval, #{title}, #{description}, #{link}, #{isbn}, #{author}, #{publisher},

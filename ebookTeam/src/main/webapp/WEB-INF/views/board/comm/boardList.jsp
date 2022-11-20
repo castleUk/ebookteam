@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 <div class="content-middle">
+	<span>${page.totalCount} 건</span>
+
 	<div class="btn-group">
 		<c:choose>
 			<c:when test="${not empty user}">
@@ -18,6 +20,7 @@
 </div>
 
 <div class="content-body">
+
 	<div class="list-table">
 		<table class="table">
 			<thead>
@@ -32,8 +35,8 @@
 			<tbody>
 				<c:forEach var="board" items="${boardList}">
 					<tr>
-						<td>${board.sorting}</td>
-						<td><a id="boardView" href="/board/view?postCategory=${board.postCategory}&postKey=${board.postKey}">${board.postTitle}</a></td>
+						<td>${board.postKey}</td>
+						<td><a id="boardView" href="/board/view?postCategory=${board.postCategory}&postKey=${board.postKey}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">${board.postTitle}</a></td>
 						<td>${board.userId}</td>
 						<td>${board.postDate}</td>
 						<td>${board.postViewCount}</td>
@@ -42,9 +45,5 @@
 			</tbody>
 		</table>
 	
-		<div class="page-group">
-			<button> < </button>
-			<button class="active"> 1 </button>
-			<button> > </button>
-		</div>
+		<%@include file="/WEB-INF/include/common/paging.jspf" %>
 	</div>

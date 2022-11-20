@@ -23,17 +23,20 @@
 	});
 </script>
 
-<form id="WriteForm" class="request-form" action="/board/list/requestWrite?postCategory=${postCategory}" >
+<form id="WriteForm" class="request-form" action="/board/list/requestWrite" >
 	<input type="hidden"  name="postCategory" value="${postCategory}"/>
 	<input type="hidden" name="req_process" value="요청"/>
 	<input type="hidden" name="userId" value="${sessionScope.user.userId}"/>
+	<input type="hidden"  name="nowPage"       value="${ map.nowPage }" />          
+  <input type="hidden"  name="pageCount"     value="${ map.pageCount }" />          
+  <input type="hidden"  name="pageGrpNum"    value="${ map.pageGrpNum }" />  
 	<div class="input-form">
 		<input type="text" id="userId" name="userId" value="${sessionScope.user.userId}" disabled/>
 		<input type="text" id="reqBook" name="req_book" placeholder="책 제목" required/>
 		<input type="text" id="reqProcess" name="req_process" value="요청" disabled/>
 	</div>
 	<div class="group-2">
-		<textarea class="cont" id="reqCont" name="req_cont" placeholder="요청 사유를 입력하세요." required></textarea>
+		<textarea class="cont" id="reqCont" name="req_cont" placeholder="댓글을 작성하세요." required></textarea>
 		<button type="submit" id="btnCreate" class="btn btn-primary">등록</button>
 	</div>
 </form>

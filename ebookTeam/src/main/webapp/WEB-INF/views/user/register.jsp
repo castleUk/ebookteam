@@ -9,16 +9,17 @@
 <div class="modal modal-s" id="Register">
     <div class="modal-content">
         <div class="modal-header">
-            <div>
+            <div class="ml-auto">
                 <button type="button" id="RegisterClose"><img class="ico" src="/img/icon/icon-close.svg"/></button>
             </div>
         </div>
         <div class="modal-body">
             <h2 class="t-center">회원가입</h2>
             <form class="login-form" id="login-form">
-                <input type="text" id="inputId" name="userId" placeholder="아이디" required="required"/>
-                <button class="idcheck" type="button" id="idcheck" value="N">중복확인
-                </button>
+                <div class="group-2">
+	            		<input type="text" id="inputId" name="userId" placeholder="아이디" required="required"/>
+	                <button class="idcheck btn btn-primary" type="button" id="idcheck" value="N">중복확인</button>
+	            	</div>
                 <input type="password" id="inputPass" name="userPass" placeholder="패스워드" required="required"/>
                 <input type="text" id="userName" name="userName" placeholder="이름" required="required"/>
                 <input type="email" id="userEmail" name="userEmail" placeholder="이메일" required="required"/>

@@ -72,17 +72,11 @@
 												<td>${request.req_cont}</td>
 												<td>${request.req_date}</td>
 												<td>${request.req_process}</td>
-												<td class="t-center"><a class="btn btn-primary" href="/manage/request/view?userId=${request.userId}">보기</a></td>
+												<td class="t-center"><a class="btn btn-primary" href="/manage/request/view?req_key=${request.req_key}">보기</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-							
-								<div class="page-group">
-									<button> < </button>
-									<button class="active"> 1 </button>
-									<button> > </button>
-								</div>
 							</div>
 						</div>
 					</div>

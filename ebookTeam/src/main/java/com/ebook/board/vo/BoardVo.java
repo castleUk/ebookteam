@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BoardVo {
+public class BoardVo{
 	//게시판
 	private int postKey;
 	private String postTitle;
@@ -26,9 +26,9 @@ public class BoardVo {
 	private String fileName; // 파일명
 	private String fileExt; // 파일확장자
 	private String sFileName; // 실제 저장 파일
-	// 검색 
-	private String sort;
-    private String Keyword;
+	// 검색
+	private String bSearchType = "";
+	private String bKeyWord = "";	
     // 카운트
     private int totalCount;
 	// GETTER, SETTER
@@ -128,11 +128,17 @@ public class BoardVo {
 	public void setFileExt(String fileExt) {
 		this.fileExt = fileExt;
 	}
-	public String getsFileName() {
-		return sFileName;
+	public String getbSearchType() {
+		return bSearchType;
 	}
-	public void setsFileName(String sFileName) {
-		this.sFileName = sFileName;
+	public void setbSearchType(String bSearchType) {
+		this.bSearchType = bSearchType;
+	}
+	public String getbKeyWord() {
+		return bKeyWord;
+	}
+	public void setbKeyWord(String bKeyWord) {
+		this.bKeyWord = bKeyWord;
 	}
 	// TOSTRING
 	@Override
@@ -141,7 +147,9 @@ public class BoardVo {
 				+ ", postDate=" + postDate + ", userId=" + userId + ", postCategory=" + postCategory
 				+ ", postViewCount=" + postViewCount + ", postFileUrl=" + postFileUrl + ", sorting=" + sorting
 				+ ", bNum=" + bNum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", file_num=" + file_num
-				+ ", fileName=" + fileName + ", fileExt=" + fileExt + ", sFileName=" + sFileName + "]";
+				+ ", fileName=" + fileName + ", fileExt=" + fileExt + ", sFileName=" + sFileName + ", totalCount=" + totalCount
+				+ ", bSearchType=" + bSearchType + ", bKeyWord=" + bKeyWord + "]";
 	}
+
 	
 }

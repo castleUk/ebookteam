@@ -106,7 +106,7 @@
 .header .head-nav .link{
 	font-size: 12px;
 	margin-left: 10px;
-  line-height: 40px;
+  line-height: 30px;
   height: 100%;
   display: flex;
 }
@@ -237,6 +237,13 @@
 	position: fixed;
 	display: none;
 }
+#Login .modal-body input, #Register .modal-body input{
+	height: 40px;
+}
+#RegisterClose{
+	background-color: transparent;
+  padding: 10px 0;
+}
 #Login h2, #Register h2{
 	padding: 20px;
 }
@@ -250,6 +257,17 @@
   font-size: 18px;
   font-weight: 500;
 }
+.login-form .group-2 input{
+	width: 100%;
+	flex: 0 0 calc(100% - 100px);
+	margin-bottom: 0px;
+}
+.login-form .group-2 button{
+  font-size: 13px !important;
+  width: 100px !important;
+  flex: 0 0 100px;
+  padding: 5px 10px !important;
+}
 
 /*main*/
 .main-content{
@@ -261,6 +279,12 @@
 .main{
 	height: 100%;
 }
+
+.best-list .book .item-img, .new-list .book .item-img, .rec-list .book .item-img{
+  border-radius: 10px;
+  border: 1px solid #f2f2f2;
+}
+
 
 .slide-container{
 	width: 100%;
@@ -283,6 +307,7 @@
 
 .slide{
 	height: 100%;
+	width: 100%;
 	float: left;
 	position: relative;
 }
@@ -398,6 +423,8 @@
 }
 .subscr-content img{
   position: absolute;
+  width: 100%;
+ 	height: 600px;
 }
 
 .subscr-content .container{
@@ -482,7 +509,7 @@
 
 .content .book{
   flex: 0 0 auto;
-  margin: 20px auto;
+  margin: 20px 10px;
   padding: 30px;
 }
 
@@ -531,6 +558,14 @@
 }
 
 /*게시판*/
+.board .list-table{
+  height: 482px;
+}
+
+.board .list-table table tbody tr{
+  vertical-align: top;
+}
+
 .form-content{
 	height: 500px;
 	vertical-align: top;
@@ -653,6 +688,17 @@
 .comment-list .form-item .group div{
 	padding: 10px;
 }
+.comment-list .form-item .comment-form{
+	width: 100%;
+}
+.comment-list .form-item .comment-form .group-2 .cont{
+  width: 100%;
+  flex: 0 0 calc(100% - 100px);
+}
+.comment-list .form-item .comment-form .group-2 .btn{
+  width: 100px;
+  flex: 0 0 100px;
+}
 
 .date{
 	font-size: 13px;
@@ -664,15 +710,29 @@
 }
 
 /*도서 요청 관리*/
-.book-list-component .search-form{
- 
-}
+
 #bookDetail .book-image img{
 	width: 200px;
 	display: block;
 	margin: auto;
 }
-
+#bookDetail .modal-header h3{
+	font-size: 24px;
+}
+#bookDetail .modal-header button{
+	background-color: transparent;
+	outline: none;
+}
+#bookDetail .modal-header button:hover{
+	opacity: 0.5;
+}
+.detail-form .book-inf .content-header h3 , .detail-form .book-cont .content-header h3{
+	padding: 10px;
+	font-size: 24px;
+}
+.detail-form .content-body{
+	padding: 0 10px;
+}
 
 .view {
   padding: 20px 0;
@@ -760,6 +820,34 @@
 	padding: 20px;
 }
 
-/*도서 자료 검색*/
+/*페이지네이션*/
+.btn-pagination{
+	margin: auto;
+  display: flex;
+  text-align: center;
+}
+.btn-pagination .btn-group{
+	display: flex;
+	margin: auto;
+	flex-direction: row;
+}
+.btn-pagination li{
+	padding: 0;
+  display: flex;
+}
+.btn-pagination .btn{
+	border-radius: 0px;
+}
+.btn-pagination .btn:last-child{
+	margin: 0px;
+}
+.btn-pagination .item:first-child .btn{
+	border-radius: 5px 0 0 5px;
+}
+.btn-pagination .item:last-child .btn{
+	border-radius: 0px 5px 5px 0px;
+}
+
+
 
 

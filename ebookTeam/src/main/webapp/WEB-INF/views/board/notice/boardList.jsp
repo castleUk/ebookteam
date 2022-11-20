@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <div class="content-middle">
 	<span>${page.totalCount} 건</span>
 	
 	<div class="btn-group">
 		<c:if test="${sessionScope.user.userId=='admin2'}" var="commu" scope="session">
-			<a class="btn btn-primary" id="btnCreate" href="/board/writeForm?postCategory=${postCategory}">등록</a>
+			<a class="btn btn-primary" id="btnCreate" href="/board/writeForm?postCategory=${postCategory}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">등록</a>
 		</c:if>
 		
 		<select name="sortSelect">
@@ -25,18 +27,15 @@
 					<th>번호</th>
 					<th>제목</th>										
 					<th>작성자</th>										
-					<th>작성일</th>			
-					<c:if test="${postCategory eq 'commu'}" var="commu" scope="session">
-						<th>댓글</th>
-					</c:if>				
+					<th>작성일</th>				
 					<th>조회수</th>										
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="board" items="${boardList}">
 					<tr>
-						<td>${board.sorting}</td>
-						<td><a id="boardView" href="/board/view?postCategory=${board.postCategory}&postKey=${board.postKey}">${board.postTitle}</a></td>
+						<td>${board.postKey}</td>
+						<td><a id="boardView" href="/board/view?postCategory=${board.postCategory}&postKey=${board.postKey}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">${board.postTitle}</a></td>
 						<td>${board.userId}</td>
 						<td>${board.postDate}</td>
 						<td>${board.postViewCount}</td>
@@ -44,11 +43,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
-	
-		<div class="page-group">
-			<button> < </button>
-			<button class="active"> 1 </button>
-			<button> > </button>
-		</div>
+		
+		<%@include file="/WEB-INF/include/common/paging.jspf" %>
+
 	</div>
 </div>

@@ -33,27 +33,8 @@ public class ApiController {
     @Autowired
     private MenuService menuService;
     private final ApiService apiService;
+    @Autowired
     private SubscribeService subscribeService;
-
-//
-//    @GetMapping("/api/search")
-//    public String list(ApiDTO apiDTO, Model model) throws Exception {
-//        model.addAttribute("list", apiService.list(apiDTO));
-//        return "/api/search";
-//    }
-
-
-//    @PostMapping("/api/search")
-//    public String getItems(@RequestParam String query) throws Exception {
-//        String resultString = naverBookSearch.search(query);
-//        List<ApiDTO> bookinfo = naverBookSearch.fromJSONtoItems(resultString);
-//
-//        for (int i = 0; i < bookinfo.size(); i++) {
-//            apiService.insertBook(bookinfo.get(i));
-//        }
-//
-//        return "/api/search";
-//    }
 
     @GetMapping("/api/searchList")
     public String go(Criteria cri, Model model,HttpSession session,SubscrVo subscrVo) throws Exception {
@@ -63,11 +44,13 @@ public class ApiController {
             model.addAttribute("url","/");
             return "alert";
         }
+        String userId = list.getUserId();
+        SubscrVo subinfo = subscribeService.getSubscrView(userId);
+        log.info("bbbbb");
+        log.info(subinfo);
 
-        try {
-            String userId = list.getUserId();
-            SubscrVo modelinfo = subscribeService.getSubscrView(userId);
-        }catch (Exception e){
+
+        if(subinfo == null){
             model.addAttribute("msg","구독신청 후 이용가능합니다.");
             model.addAttribute("url","/");
             return "alert";
@@ -95,6 +78,18 @@ public class ApiController {
             model.addAttribute("url","/");
             return "alert";
         }
+
+            String userId = list.getUserId();
+            SubscrVo subinfo = subscribeService.getSubscrView(userId);
+            log.info("bbbbb");
+            log.info(subinfo);
+
+        if(subinfo == null){
+            model.addAttribute("msg","구독신청 후 이용가능합니다.");
+            model.addAttribute("url","/");
+            return "alert";
+        }
+
         String resultString = naverBookSearch.search(keyword);
         List<ApiDTO> bookinfo = naverBookSearch.fromJSONtoItems(resultString);
         for (int i = 0; i < bookinfo.size(); i++) {

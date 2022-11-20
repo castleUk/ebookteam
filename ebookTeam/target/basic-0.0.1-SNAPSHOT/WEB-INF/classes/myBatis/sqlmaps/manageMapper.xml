@@ -156,7 +156,7 @@
   <select id="RequestView" resultType="com.ebook.manage.vo.RequestVo">
 		SELECT REQ_KEY, POSTCATEGORY, REQ_BOOK, REQ_DATE, USERID, REQ_CONT, REQ_PROCESS
 		FROM REQUEST
-		WHERE USERID = #{userId}
+		WHERE REQ_KEY = #{req_key}
   </select>
   
   <!-- 요청 관리 : 정보 가져오기 -->

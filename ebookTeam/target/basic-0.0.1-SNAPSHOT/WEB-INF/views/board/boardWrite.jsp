@@ -50,9 +50,12 @@
 							<h2>${ pageMenu.menu_name } 작성</h2>
 						</div>
 						<div class="content-body">
-							<form id="WriteForm" class="form-table" action="/board/write?postCategory=${board.postCategory}">
-								<input type="hidden"  name="postCategory" value="${postCategory}"/>
-								<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
+							<form id="WriteForm" class="form-table" action="/board/write" method="GET">
+								<input type="hidden"  name="postCategory"  value="${postCategory}"/>
+								<input type="hidden"  name="userId"        value="${sessionScope.user.userId}"/>
+								<input type="hidden"  name="nowPage"       value="${ map.nowPage }" />          
+					      <input type="hidden"  name="pageCount"     value="${ map.pageCount }" />          
+					      <input type="hidden"  name="pageGrpNum"    value="${ map.pageGrpNum }" />  
 								<table class="table">
 									<tr>
 										<th>제목</th>
