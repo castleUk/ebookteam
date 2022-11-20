@@ -31,6 +31,7 @@ public class BoardController {
 	// 목록
 	@RequestMapping("/list")
 	public ModelAndView BoardList(String postCategory) {
+
 		ModelAndView mv = new ModelAndView();
 		
 		// sideMenu

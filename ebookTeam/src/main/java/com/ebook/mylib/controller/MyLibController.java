@@ -40,26 +40,21 @@ public class MyLibController {
         return null;
     }
 
-    //	@GetMapping("/lib/myBook")
-//	public String myLibGo(){
-//		return "/lib/myBook";
-//	}
     @GetMapping("/lib/myBook")
     public String list(MyLibDTO myLibDTO, Model model, HttpSession httpSession) throws Exception {
         UsersVO session = (UsersVO) httpSession.getAttribute("user");
-        System.out.println("1.==========================");
+        if (session == null) {
+            model.addAttribute("msg","로그인 후 이용가능합니다.");
+            model.addAttribute("url","/");
+            return "alert";
+        }
+
         List<MenuVo> boardMenu = menuService.getBoardMenu();
         List<MenuVo> myMenu = menuService.getMyMenu();
-        System.out.println("2.==========================");
-
-        if (session == null) {
-            return "redirect:/";
-        }
         MyLibDTO dto = new MyLibDTO();
         UsersVO usersVO = (UsersVO) httpSession.getAttribute("user");
         String userId = usersVO.getUserId();
         dto.setUserId(userId);
-
         Object list1 = myLibService.selectMylib(dto);
         log.info(list1);
         model.addAttribute("list", list1);

@@ -31,8 +31,10 @@ public class SubscrController {
 	public String subscrWrite(Model model, HttpSession session) {
 		UsersVO userinfo = (UsersVO) session.getAttribute("user");
 		if (userinfo==null){
-			return "redirect:/";
-		}
+				model.addAttribute("msg","로그인 후 이용가능합니다.");
+				model.addAttribute("url","/");
+				return "alert";
+			}
 		String userId = userinfo.getUserId();
 		model.addAttribute("userId",userId);
 
@@ -40,9 +42,11 @@ public class SubscrController {
 	}
 	
 	@PostMapping("/subscr/writeForm")
-	public String subResister(SubscrVo subscrVo) throws Exception{
+	public String subResister(SubscrVo subscrVo,HttpSession session, UsersVO usersVO) throws Exception{
 		
 		subscribeService.insertSubscr(subscrVo);
+		session.setAttribute("user", usersVO);
+		log.info(session);
 
 		return "redirect:/subscr/subscrView";
 	}
@@ -52,7 +56,9 @@ public class SubscrController {
 	public String go(HttpSession session,Model model) throws Exception{
 		UsersVO userinfo = (UsersVO) session.getAttribute("user");
 		if (userinfo==null){
-			return "redirect:/";
+				model.addAttribute("msg","로그인 후 이용가능합니다.");
+				model.addAttribute("url","/");
+				return "alert";
 		}
 		log.info(userinfo);
 		String userId = userinfo.getUserId();

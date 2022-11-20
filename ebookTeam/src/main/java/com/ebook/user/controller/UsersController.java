@@ -6,6 +6,7 @@ import com.ebook.user.vo.UsersVO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,17 +31,21 @@ public class UsersController {
     }
 
     @PostMapping("/user/login")
-    public String login(UsersVO usersVO, HttpSession session) throws Exception {
+    public String login(UsersVO usersVO, HttpSession session, Model model) throws Exception {
         log.info(usersVO);
         log.info("post login");
         usersVO = usersService.login(usersVO);
+
         log.info(usersVO);
         if (usersVO != null) {
             session.setAttribute("user", usersVO);
             log.info(session);
 
         } else {
-            return "redirect:../error";
+
+            model.addAttribute("msg","아이디 비밀번호를 확인하세요");
+            model.addAttribute("url","/");
+            return "alert";
         }
         log.info(session);
         return "redirect:/";
@@ -88,13 +93,14 @@ public class UsersController {
 
     //==========================업데이트==========================================
     @GetMapping("/user/update")
-    public String update(HttpSession session) {
+    public String update(HttpSession session,Model model) {
         UsersVO list = (UsersVO) session.getAttribute("user");
         if (list == null) {
-            return "redirect:/";
+                model.addAttribute("msg","로그인 후 이용가능합니다.");
+                model.addAttribute("url","/");
+                return "alert";
+            }
 
-
-        }
         return "/user/update";
     }
 
@@ -112,11 +118,13 @@ public class UsersController {
 
     //==========================업데이트 끝==========================================
     @GetMapping("/user/delete")
-    public String deleteview() throws Exception {
+    public String deleteview(HttpSession httpSession, Model model) throws Exception {
         UsersVO list = (UsersVO) httpSession.getAttribute("user");
         if (list == null) {
-            return "redirect:/";
-        }
+                model.addAttribute("msg","로그인 후 이용가능합니다.");
+                model.addAttribute("url","/");
+                return "alert";
+            }
         return "/user/delete";
     }
 
