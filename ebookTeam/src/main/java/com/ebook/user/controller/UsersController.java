@@ -1,6 +1,8 @@
 package com.ebook.user.controller;
 
 
+import com.ebook.manage.service.MenuService;
+import com.ebook.manage.vo.MenuVo;
 import com.ebook.user.service.UsersService;
 import com.ebook.user.vo.UsersVO;
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Log4j2
@@ -24,6 +27,7 @@ public class UsersController {
     @Autowired
     UsersService usersService;
     HttpSession httpSession;
+    private MenuService menuService;
 
     //==========================로그인 시작==============================
     @GetMapping("/user/login")
@@ -93,13 +97,19 @@ public class UsersController {
 
     //==========================업데이트==========================================
     @GetMapping("/user/update")
-    public String update(HttpSession session,Model model) {
+    public String update(HttpSession session,Model model) throws Exception{
         UsersVO list = (UsersVO) session.getAttribute("user");
+
         if (list == null) {
                 model.addAttribute("msg","로그인 후 이용가능합니다.");
                 model.addAttribute("url","/");
                 return "alert";
             }
+
+//        List<MenuVo> boardMenu = menuService.getBoardMenu();
+//        List<MenuVo> myMenu = menuService.getMyMenu();
+//        model.addAttribute("boardMenu", boardMenu);
+//        model.addAttribute("myMenu", myMenu);
 
         return "/user/update";
     }
@@ -111,6 +121,7 @@ public class UsersController {
         usersService.update(usersVO);
 
         httpSession.invalidate();
+
 
         return "redirect:/";
 

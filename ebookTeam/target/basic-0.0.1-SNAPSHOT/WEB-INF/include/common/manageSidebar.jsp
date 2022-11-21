@@ -5,7 +5,7 @@
 	<ul class="nav">
 		<c:forEach var="menu" items="${manageMenu}">
 			<li class="link-item">
-				<a class="link" href="/manage/${menu.postCategory}?postCategory=${menu.postCategory}">${menu.menu_name}</a>
+				<a class="link" href="/manage/${menu.postCategory}">${menu.menu_name}</a>
 			</li>
 		</c:forEach>
 	</ul>

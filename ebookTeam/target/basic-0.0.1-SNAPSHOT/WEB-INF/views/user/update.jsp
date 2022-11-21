@@ -29,6 +29,7 @@
 
                     <div class="content-body">
                         <form id= "form-userUpdate" class="form-table">
+                            <table>
                             <tr>
                                 <th>이름</th>
                                 <td><input type="text" class="disabled" name="userName" placeholder="이름"
@@ -65,8 +66,8 @@
                             </table>
 
                             <div class="btn-group">
-                                <button type="button" id="btnUserUpdate">회원정보수정</button>
-                                <button type="button" onclick="location.href='/user/delete'">회원탈퇴</button>
+                                <button type="button" id="btnUserUpdate" class="btn btn-primary ml-auto">회원정보수정</button>
+                                <button type="button" onclick="location.href='/user/delete'" class="btn btn-danger">회원탈퇴</button>
                             </div>
                         </form>
                     </div>

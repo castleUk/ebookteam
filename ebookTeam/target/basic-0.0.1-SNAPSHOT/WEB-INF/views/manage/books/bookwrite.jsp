@@ -103,7 +103,7 @@
 								</table>
 							
 								<div class="btn-group">
-									<button id="btnList" class="btn btn-secondary" href="/manage/books">목록</button>
+									<a id="btnList" class="btn btn-secondary" href="/manage/books">목록</a>
 									<button type ="submit" id="btnUpdate" class="btn btn-primary right">추가</button>
 									<button id="btnClose" class="btn btn-secondary" onclick="history.back()">취소</button>
 								</div>

@@ -2,6 +2,8 @@ package com.ebook.manage.controller;
 
 import java.util.List;
 
+import com.ebook.api.vo.ApiDTO;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import com.ebook.subscr.service.SubscribeService;
 import com.ebook.subscr.vo.SubscrVo;
 
 @Controller()
+@Log4j2
 @RequestMapping("manage")
 public class ManageController {
 	
@@ -48,9 +51,15 @@ public class ManageController {
 		
 		// 회원 목록
 		List<UserVo> userList = userService.getUserList();
+
+		List<MenuVo> myMenu = menuService.getMyMenu();
+		List<MenuVo> boardMenu = menuService.getBoardMenu();
+
 		
 		mv.addObject("manageMenu", manageMenu);
 		mv.addObject("userList", userList);
+		mv.addObject("boardMenu", boardMenu);
+		mv.addObject("myMenu", myMenu);
 		
 		mv.setViewName("manage/user/userList");
 		return mv;
@@ -235,6 +244,8 @@ public class ManageController {
 		
 		// 구독 정보
 		SubscrVo subscr = subscribeService.getSubscrView(userId);
+		log.info("333333333333333333");
+		log.info(subscr);
 
 		mv.addObject("manageMenu", manageMenu);
 		mv.addObject("subscr", subscr);

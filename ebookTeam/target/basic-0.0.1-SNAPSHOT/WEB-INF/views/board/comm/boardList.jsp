@@ -8,7 +8,7 @@
 	<div class="btn-group">
 		<c:choose>
 			<c:when test="${not empty user}">
-				<a class="btn btn-primary" id="btnCreate" href="/board/writeForm?postCategory=${postCategory}">등록</a>
+				<a class="btn btn-primary" id="btnCreate" href="/board/writeForm?postCategory=${postCategory}&postKey=${board.postKey}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">등록</a>
 			</c:when>
 		</c:choose>
 		<select name="sortSelect">

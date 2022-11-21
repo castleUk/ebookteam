@@ -3,6 +3,8 @@ package com.ebook.board.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import ch.qos.logback.classic.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +21,8 @@ import com.ebook.manage.service.RequestService;
 import com.ebook.manage.vo.MenuVo;
 import com.ebook.manage.vo.RequestVo;
 
+
+@Log4j2
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -56,6 +60,8 @@ public class BoardController {
 	
 		// 현재 메뉴 정보
 		MenuVo pageMenu = menuService.getPageMenu(postCategory);
+
+		log.info(pageMenu);
 		
 		// 페이징 : 조회된 결과 pagecount(2개만 return -> 2줄 / Row_number() 로 2개만 조회
 		int nowPage    =   Integer.parseInt( map.get("nowPage").toString() );
