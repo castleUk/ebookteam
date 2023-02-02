@@ -16,20 +16,13 @@
 	<script src="/js/common.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			// 삭제 버튼
-			$('#btnDelete').on('click', function(){
-				var deleteYN = confirm("삭제하시겠습니까?");
-				if(deleteYN == true){
-					formObj.submit();
-				}
-			});	
 			
 			// 목록 버튼
-			$('#btnList').on('click', function(){
+			/* $('#btnList').on('click', function(){
 				//alert("목록");
-				let url = '/board/list?postCategory=${board.postCategory}';
+				let url = '/board/list?postCategory=${board.postCategory}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}';
 				location.href = url;
-			});
+			}); */
 		});
 	</script>
 </head>
@@ -46,7 +39,6 @@
 						<div class="content-header">
 							<h2>${ pageMenu.menu_name } 게시글</h2>
 						</div>
-						
 						<div class="content-body">
 							<div class="form-table">
 								<table class="table">
@@ -68,27 +60,22 @@
 									</tr>
 								</table>
 								<div class="btn-group">
-									<button id="btnList" class="btn btn-secondary mr-10">목록</button>
+									<a id="btnList" class="btn btn-secondary mr-10" href="/board/list?postCategory=${board.postCategory}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">목록</a>
 									<c:choose>
-					        	<c:when test="${sessionScope.user.userId=='admin2'}">
+					        	<c:when test="${sessionScope.user.userId eq 'admin2'}">
 					          	<a class="btn btn-primary" id="btnReplay" 
 										href="/board/replayForm?postCategory=${board.postCategory}&postKey=${board.postKey}&bnum=${boardVo.bnum}&lvl=${boardVo.lvl}&step=${boardVo.step}&nref=${boardVo.nref}">답변</a>
 					          </c:when>
-
 					        </c:choose>
-					        <a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}">수정</a>
-									<a class="btn btn-danger" id="btnDelete" href="/board/delete?postCategory=${board.postCategory}&postKey=${board.postKey}">삭제</a>
-								</div>
+									<c:if test="${sessionScope.user.userId eq board.userId}" var="test" scope="session">
+										<a class="btn btn-primary right" id="btnUpdate" href="/board/updateForm?postCategory=${board.postCategory}&postKey=${board.postKey}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">수정</a>
+										<a class="btn btn-danger" id="btnDelete" href="/board/delete?postCategory=${board.postCategory}&postKey=${board.postKey}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">삭제</a>
+									</c:if>
+					   		</div>
 							</div>
 							
 							<c:if test="${board.postCategory eq 'commu'}" var="commu" scope="session">
-								<!-- 댓글 -->
-								<%@ include file="/WEB-INF/views/board/comm/boardWrite.jsp" %>
-								<!-- 댓글 -->
-								
-								<!-- 댓글 목록 -->
-								<%@ include file="/WEB-INF/views/board/comm/boardList.jsp" %>
-								<!-- 댓글 목록 -->
+								<%@ include file="/WEB-INF/views/board/comm/boardView.jsp" %>
 							</c:if>
 						</div>
 					</div>

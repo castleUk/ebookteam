@@ -10,7 +10,7 @@
 		<ul class="sub-nav">
 			<li class="link-item">
 				<c:forEach var="menu" items="${boardMenu}">
-					<a class="link" href="/board/list?postCategory=${menu.postCategory}">${menu.menu_name}</a>
+					<a class="link" href="/board/list?postCategory=${menu.postCategory}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}">${menu.menu_name}</a>
 				</c:forEach>
 			</li>
 		</ul>

@@ -75,11 +75,11 @@
 									</tbody>
 								</table>
 							
-								<div class="page-group">
-									<button> < </button>
-									<button class="active"> 1 </button>
-									<button> > </button>
-								</div>
+<%--								<div class="page-group">--%>
+<%--									<button> < </button>--%>
+<%--									<button class="active"> 1 </button>--%>
+<%--									<button> > </button>--%>
+<%--								</div>--%>
 							</div>
 						</div>
 					</div>

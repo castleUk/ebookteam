@@ -39,7 +39,7 @@
 									</tr>
 									<tr>
 										<th>이름</th>
-										<td>${subscr.userName}</td>
+										<td>${subscr.usersVO.userName}</td>
 									</tr>
 									<tr>
 										<th>아이디</th>
@@ -47,7 +47,7 @@
 									</tr>
 									<tr>
 										<th>가입일</th>
-										<td>${subscr.joinDate}</td>
+										<td>${subscr.usersVO.joinDate}</td>
 									</tr>
 									<tr>
 										<th>구독일</th>

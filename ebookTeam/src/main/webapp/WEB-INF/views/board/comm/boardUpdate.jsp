@@ -5,6 +5,9 @@
 	<input type="hidden"  name="postCategory" value="${comm.postCategory}"/>
 	<input type="hidden"  name="postKey" value="${comm.postKey}"/>
 	<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
+	<input type="hidden"  name="nowPage"       value="${ map.nowPage }" />          
+  <input type="hidden"  name="pageCount"     value="${ map.pageCount }" />          
+  <input type="hidden"  name="pageGrpNum"    value="${ map.pageGrpNum }" />  
 	<div class="input-form">
 		${comm.userId}
 	</div>

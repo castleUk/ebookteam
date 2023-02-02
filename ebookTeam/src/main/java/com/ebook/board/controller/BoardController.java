@@ -1,20 +1,28 @@
 package com.ebook.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
+import ch.qos.logback.classic.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ebook.board.service.BoardService;
 import com.ebook.board.vo.BoardVo;
 import com.ebook.board.vo.CommentVo;
+import com.ebook.board.vo.PageVo;
 import com.ebook.manage.service.MenuService;
 import com.ebook.manage.service.RequestService;
 import com.ebook.manage.vo.MenuVo;
 import com.ebook.manage.vo.RequestVo;
 
+
+@Log4j2
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -27,62 +35,97 @@ public class BoardController {
 	
 	@Autowired
 	private RequestService requestService;
-
+	
+	@RequestMapping("/list/search")
+	public ModelAndView search(@RequestParam String keyWord, @RequestParam String searchValue) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("검색: " + keyWord);
+		System.out.println("값 :"  + searchValue);
+		
+		
+		mv.setViewName("board/boardList");	
+		return   mv;	
+	}
+	
 	// 목록
 	@RequestMapping("/list")
-	public ModelAndView BoardList(String postCategory) {
+	public ModelAndView BoardList (String postCategory, @RequestParam HashMap<String, Object>	map){
 		ModelAndView mv = new ModelAndView();
 		
 		// sideMenu
 		List<MenuVo> boardMenu = menuService.getBoardMenu();
 		List<MenuVo> myMenu = menuService.getMyMenu();
-		
-		// 목록
-		List<BoardVo> boardList = boardService.getBoardList(postCategory);
-		
-		// 도서 요청
-		List<RequestVo> requestList = boardService.getRequestList(postCategory);
-		
+	
 		// 현재 메뉴 정보
 		MenuVo pageMenu = menuService.getPageMenu(postCategory);
 
+		log.info(pageMenu);
+		
+		// 페이징 : 조회된 결과 pagecount(2개만 return -> 2줄 / Row_number() 로 2개만 조회
+		int nowPage    =   Integer.parseInt( map.get("nowPage").toString() );
+		int pageCount  =   Integer.parseInt( map.get("pageCount").toString() ); 
+		int startNum   =   ( nowPage - 1  ) * pageCount + 1;
+	    int endNum     =   nowPage * pageCount; 
+	    
+	    map.put("startNum",   startNum);
+		map.put("endNum",     endNum);
+		
+		// 목록
+		List<PageVo> boardList = boardService.getBoardList(map);
+		
+		if(postCategory.equals("bookrequest")) {
+			// 도서 요청
+			List<PageVo> requestList = boardService.getRequestList(map);
+			mv.addObject("requestList", requestList);
+		}
+		
+		PageVo page  = (PageVo) map.get("Page");
+
+		
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
-		mv.addObject("boardList", boardList);
-		mv.addObject("requestList", requestList);
 		mv.addObject("pageMenu", pageMenu);
+		mv.addObject("page", page);
+		mv.addObject("map",map);
+		mv.addObject("boardList", boardList);
+
 		mv.addObject("postCategory",postCategory);
 		
-		mv.setViewName("/board/boardList");
-		return mv;
+		mv.setViewName("board/boardList");	
+		return   mv;	
 	}
 	
 	// 보기
 	@RequestMapping("/view")
-	public ModelAndView BoardView(int postKey, String postCategory) {
+	public ModelAndView BoardView(int postKey, String postCategory,
+			@RequestParam HashMap<String, Object>	map) {
 		ModelAndView mv = new ModelAndView();
 		// sideMenu
 		List<MenuVo> boardMenu = menuService.getBoardMenu();
 		List<MenuVo> myMenu = menuService.getMyMenu();
 		
+		// 현재 메뉴 정보
+		MenuVo pageMenu = menuService.getPageMenu(postCategory);
+				
 		// 게시글 보기
-		BoardVo board = boardService.getBoardView(postKey);
+		BoardVo board = boardService.getBoardView(map);
 		board.setPostContent(board.getPostContent().replace("\n", "<br>" ));
 		
 		// 커뮤니티 댓글 목록
-		List<CommentVo> commList = boardService.getCommList(postKey);
-		
-		// 현재 메뉴 정보
-		MenuVo pageMenu = menuService.getPageMenu(postCategory);
+		List<CommentVo> commList = boardService.getCommList(map);
 		
 		// 커뮤니티 댓글 갯수
-		//CommentVo comm = 
+		CommentVo comm = boardService.getCommentcount(postKey);
 				
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
 		mv.addObject("board",board);
 		mv.addObject("commList",commList);
 		mv.addObject("pageMenu", pageMenu);
+		mv.addObject("comm", comm);
+		mv.addObject("map", map);
 		
 		mv.setViewName("/board/boardView");
 		return mv;
@@ -90,7 +133,7 @@ public class BoardController {
 
 	// 작성
 	@RequestMapping("/writeForm")
-	public ModelAndView boardWriteFrom(String postCategory) {
+	public ModelAndView boardWriteFrom(String postCategory, @RequestParam HashMap<String, Object>	map) {
 		ModelAndView mv = new ModelAndView();
 		// sideMenu
 		List<MenuVo> boardMenu = menuService.getBoardMenu();
@@ -102,6 +145,7 @@ public class BoardController {
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
 		mv.addObject("pageMenu", pageMenu);
+		mv.addObject("map", map);
 		mv.addObject("postCategory", postCategory);
 
 		mv.setViewName("/board/boardWrite");
@@ -110,59 +154,91 @@ public class BoardController {
 	
 	// 등록
 	@RequestMapping("/write")
-	public ModelAndView boardWrite(BoardVo board) {
+	public ModelAndView boardWrite(BoardVo board, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.insertBoard(board);
-		mv.addObject("board", board);
+		// 작성
+		boardService.insertBoard(map);
 		
-		mv.setViewName("redirect:/board/list?postCategory="+ board.getPostCategory());
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+	
+		mv.addObject("map",  map);
+		
+		mv.setViewName("redirect:/board/list?postCategory="+ board.getPostCategory() +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
 		return mv;
 	}
 	
 	// 수정
 	@RequestMapping("/updateForm")
-	public ModelAndView boardUpdateForm(int postKey, String postCategory) {
+	public ModelAndView boardUpdateForm(int postKey, String postCategory, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		// sideMenu
 		List<MenuVo> boardMenu = menuService.getBoardMenu();
 		List<MenuVo> myMenu = menuService.getMyMenu();
 		
 		// 정보 가져오기
-		BoardVo board = boardService.getBoard(postKey);
+		BoardVo board = boardService.getBoard(map);
 		
 		// 현재 메뉴 정보
 		MenuVo pageMenu = menuService.getPageMenu(postCategory);
 		
+		System.out.println("update form board: " + board);
+		System.out.println("update form map: " + map);
+		
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
 		mv.addObject("board", board);
+		mv.addObject("map", map);
 		mv.addObject("pageMenu", pageMenu);
+		
+		System.out.println("map"+map);
 		
 		mv.setViewName("/board/boardUpdate");
 		return mv;
 	}
 	
 	@RequestMapping("/update")
-	public ModelAndView boardUpdate(BoardVo board) {
+	public ModelAndView boardUpdate(BoardVo board, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.updateBoard(board);
+		boardService.updateBoard(map);
 		mv.addObject("board", board);
+		mv.addObject("map", map);
 		
-		mv.setViewName("redirect:/board/list?postCategory=" + board.getPostCategory());
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+
+		mv.addObject("map",  map);
+		
+		mv.setViewName("redirect:/board/list?postCategory="+ board.getPostCategory() +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
+		
 		return mv;
 	}
 	
 	// 삭제
 	@RequestMapping("/delete")
-	public ModelAndView boardDelete(int postKey, String postCategory) {
+	public ModelAndView boardDelete(int postKey, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.deleteBoard(postKey);
-		mv.addObject("postCategory", postCategory);
+		boardService.deleteBoard(map);
+		//mv.addObject("postCategory", postCategory);
 		
-		mv.setViewName("redirect:/board/list");
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+		
+		mv.addObject("map", map);
+		
+		mv.setViewName("redirect:/board/list?postCategory="+ postCategory +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
+	
 		return mv;
 	}
 	
@@ -179,12 +255,12 @@ public class BoardController {
 		List<MenuVo> myMenu = menuService.getMyMenu();
 		
 		// 게시글 보기
-		BoardVo board = boardService.getBoardView(postKey);
-		board.setPostContent(board.getPostContent().replace("\n", "<br>" ));
+		//BoardVo board = boardService.getBoardView(postKey);
+		//board.setPostContent(board.getPostContent().replace("\n", "<br>" ));
 		
 		mv.addObject("boardMenu", boardMenu);
 		mv.addObject("myMenu", myMenu);
-		mv.addObject("board", board);
+		//mv.addObject("board", board);
 		
 		
 		mv.setViewName("/board/qna/qnaWrite");
@@ -225,27 +301,41 @@ public class BoardController {
 	
 	// 도서 요청 : 작성
 	@RequestMapping("/list/requestWrite")
-	public ModelAndView insertBookRequest(String postCategory, RequestVo request) {
+	public ModelAndView insertBookRequest(RequestVo request, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.insertBookRequest(request);
+		boardService.insertBookRequest(map);
 		
 		mv.addObject("request",request);
-		mv.addObject("postCategory",postCategory);
+		mv.addObject("map",map);
 
-		mv.setViewName("redirect:/board/list");
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+
+		mv.setViewName("redirect:/board/list?postCategory="+ postCategory +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
 		return mv;
 	}
+	
 	// 도서 요청 : 작성
 	@RequestMapping("/list/delete")
-	public ModelAndView daelteBookRequest(String postCategory, int req_key) {
+	public ModelAndView daelteBookRequest(@RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.deleteBookRequest(req_key);
-		
-		mv.addObject("postCategory",postCategory);
+		boardService.deleteBookRequest(map);
 
-		mv.setViewName("redirect:/board/list");
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+		
+		mv.addObject("map", map);
+		
+		mv.setViewName("redirect:/board/list?postCategory="+ postCategory +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
+
 		return mv;
 	}
 	
@@ -254,68 +344,81 @@ public class BoardController {
 
 	
 	// 댓글 작성
-	@RequestMapping("/view/commForm")
-	public ModelAndView commentForm(int postKey) {
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("postKey", postKey);
-		
-		mv.setViewName("/board/comm/boardWrite");
-		return mv;
-	}
-	
 	@RequestMapping("/view/comment")
-	public ModelAndView comment(int postKey, CommentVo comm) {
+	public ModelAndView comment(int postKey, CommentVo comm, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 
 		// 커뮤니티 댓글 작성
-		boardService.insertComment(comm);
-		
-		mv.addObject("postKey", postKey);
+		boardService.insertComment(map);
+
 		mv.addObject("comm",comm);
+		mv.addObject("map",map);
 		
-		mv.setViewName("redirect:/board/view/?postCategory=" + comm.getPostCategory());
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+		
+		mv.addObject("map", map);
+		
+		mv.setViewName("redirect:/board/view?postCategory="+ postCategory + "&postKey=" + postKey +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
+
 		return mv;
 	}
 	
 	// 댓글 정보 가져오기
-	@RequestMapping("/view/updateForm")
-	public ModelAndView commentUpdateForm(int commIdx) {
+	@RequestMapping("/view/commUpdateForm")
+	public ModelAndView commentUpdateForm(int commIdx, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
 		// 정보 가져오기
 		CommentVo comm = boardService.getComment(commIdx);
-		mv.addObject("commIdx", commIdx);
+		mv.addObject("comm", comm);
+		mv.addObject("map", map);
 		
-		mv.setViewName("/board/comm/boardUpdate");
+		mv.setViewName("/board/comm/commentUpdate");
 		return mv;
 	}
 	
 	// 댓글 수정
-	@RequestMapping("/view/update")
-	public ModelAndView commentUpdate(CommentVo comm) {
+	@RequestMapping("/view/commUpdate")
+	public ModelAndView commentUpdate(CommentVo comm, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
 		
-		boardService.updateComment(comm);
+		boardService.updateComment(map);
 		mv.addObject("comm", comm);
+		mv.addObject("map", map);
 		
-		mv.setViewName("redirect:/board/view/?postCategory=" + comm.getPostCategory() +
-				"&postKey" + comm.getPostKey());
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
+		
+		mv.addObject("map", map);
+		
+		mv.setViewName("redirect:/board/view?postCategory="+ postCategory + "&postKey=" + comm.getPostKey() +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
 		return mv;
 	}
 	
 	// 댓글 삭제
 	@RequestMapping("/view/delete")
-	public ModelAndView commentDelete(int commIdx, int postKey, String postCategory) {
+	public ModelAndView commentDelete(CommentVo comm, @RequestParam  HashMap<String, Object> map) {
 		ModelAndView mv = new ModelAndView();
+
+		boardService.deleteComment(map);
+		mv.addObject("comm",comm);
+		mv.addObject("map",map);
 		
-		boardService.deleteComment(commIdx);
-		mv.addObject("postCategory", postCategory);
-		mv.addObject("postKey", postKey);
+		String  postCategory = (String) map.get("postCategory");
+		int  nowPage    = Integer.parseInt( (String) map.get("nowPage") );
+		int  pageCount  = Integer.parseInt( (String) map.get("pageCount") );
+		int  pageGrpNum = Integer.parseInt( (String) map.get("pageGrpNum") );
 		
-		mv.setViewName("redirect:/board/view");
+		mv.setViewName("redirect:/board/view?postCategory="+ postCategory + "&postKey=" + comm.getPostKey() +
+				"&nowPage="+ nowPage + "&pageCount="+ pageCount +"&pageGrpNum="+ pageGrpNum);
 		return mv;
 	}
-
 	
 }

@@ -40,8 +40,8 @@
 				<%@ include file="/WEB-INF/include/common/footer.jsp" %>
 				<!-- footer -->
 				
-				<%@ include file="/WEB-INF/views/user/login.jsp" %>
-				<%@ include file="/WEB-INF/views/user/register.jsp" %>
+<%--				<%@ include file="/WEB-INF/views/user/login.jsp" %>--%>
+<%--				<%@ include file="/WEB-INF/views/user/register.jsp" %>--%>
 			</div>
 		</div>
 	</div>

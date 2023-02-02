@@ -50,13 +50,16 @@
 							<h2>${ pageMenu.menu_name } 작성</h2>
 						</div>
 						<div class="content-body">
-							<form id="WriteForm" class="form-table" action="/board/write?postCategory=${board.postCategory}">
-								<input type="hidden"  name="postCategory" value="${postCategory}"/>
-								<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
+							<form id="WriteForm" class="form-table" action="/board/write" method="GET">
+								<input type="hidden"  name="postCategory"  value="${postCategory}"/>
+								<input type="hidden"  name="userId"        value="${sessionScope.user.userId}"/>
+								<input type="hidden"  name="nowPage"       value="${ map.nowPage }" />          
+					      <input type="hidden"  name="pageCount"     value="${ map.pageCount }" />          
+					      <input type="hidden"  name="pageGrpNum"    value="${ map.pageGrpNum }" />  
 								<table class="table">
 									<tr>
 										<th>제목</th>
-										<td><input type="text" id="postTitle" name="postTitle" placeholder="제목을 입력하세요."/></td>
+										<td><input type="text" id="postTitle" name="postTitle" placeholder="제목을 입력하세요." required/></td>
 									</tr>
 									<tr>
 										<th>작성자</th>
@@ -65,7 +68,7 @@
 									<tr>
 										<th>내용</th>
 										<td class="cont">
-											<textarea  id="postContent" name="postContent" placeholder="내용을 입력하세요."></textarea>
+											<textarea  id="postContent" name="postContent" placeholder="내용을 입력하세요." required></textarea>
 										</td>
 									</tr>
 

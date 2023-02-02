@@ -33,14 +33,14 @@
 		
 		// 목록 버튼
 		$('#btnList').on('click', function(){
-			let url = '/board/list?postCategory=${board.postCategory}';
+			let url = '/board/list?postCategory=${board.postCategory}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}';
 			location.href = url;
 		})
 		
 		// 취소 버튼
 		$('#btnClose').on('click', function(){
 			alert("작성이 취소되었습니다.");
-			let url = '/board/list?postCategory=${board.postCategory}';
+			let url = '/board/list?postCategory=${board.postCategory}&nowPage=${map.nowPage}&pageCount=${map.pageCount}&pageGrpNum=${map.pageGrpNum}';
 			location.href = url;
 		})
 		
@@ -62,14 +62,17 @@
 						</div>
 						
 						<div class="content-body">
-							<form id="WriteForm" class="form-table" action="/board/update" method="POST">
+							<form id="WriteForm" class="form-table" action="/board/update" method="GET">
 								<input type="hidden"  name="postKey" value="${ board.postKey }" />
 								<input type="hidden"  name="postCategory" value="${ board.postCategory }" />
-								<input type="hidden"  name="userId" value="${sessionScope.user.userId}"/>
+								<input type="hidden"  name="userId"       value="${sessionScope.user.userId}"/>
+								<input type="hidden"  name="nowPage"       value="${ map.nowPage }" />          
+					      <input type="hidden"  name="pageCount"     value="${ map.pageCount }" />          
+					      <input type="hidden"  name="pageGrpNum"    value="${ map.pageGrpNum }" />  
 								<table class="table">
 									<tr>
 										<th>제목</th>
-										<td><input type="text" id="postTitle" name="postTitle" value="${board.postTitle}" placeholder="제목을 입력하세요."/></td>
+										<td><input type="text" id="postTitle" name="postTitle" value="${board.postTitle}" placeholder="제목을 입력하세요." required/></td>
 									</tr>
 									<tr>
 										<th>작성자</th>
@@ -78,7 +81,7 @@
 									<tr>
 										<th>내용</th>
 										<td class="cont">
-											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요.">${board.postContent}</textarea>
+											<textarea name="postContent" id="postContent" placeholder="내용을 입력하세요." required>${board.postContent}</textarea>
 										</td>
 									</tr>
 								</table>

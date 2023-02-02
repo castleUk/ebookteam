@@ -7,6 +7,8 @@ import com.ebook.manage.service.MenuService;
 import com.ebook.manage.vo.MenuVo;
 import com.ebook.page.Criteria;
 import com.ebook.page.PageMaker;
+import com.ebook.subscr.service.SubscribeService;
+import com.ebook.subscr.vo.SubscrVo;
 import com.ebook.user.vo.UsersVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -14,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
@@ -31,32 +32,30 @@ public class ApiController {
     @Autowired
     private MenuService menuService;
     private final ApiService apiService;
-
-//
-//    @GetMapping("/api/search")
-//    public String list(ApiDTO apiDTO, Model model) throws Exception {
-//        model.addAttribute("list", apiService.list(apiDTO));
-//        return "/api/search";
-//    }
-
-
-//    @PostMapping("/api/search")
-//    public String getItems(@RequestParam String query) throws Exception {
-//        String resultString = naverBookSearch.search(query);
-//        List<ApiDTO> bookinfo = naverBookSearch.fromJSONtoItems(resultString);
-//
-//        for (int i = 0; i < bookinfo.size(); i++) {
-//            apiService.insertBook(bookinfo.get(i));
-//        }
-//
-//        return "/api/search";
-//    }
+    @Autowired
+    private SubscribeService subscribeService;
 
     @GetMapping("/api/searchList")
-    public String go(Criteria cri, Model model) throws Exception {
-//        UsersVO list = (UsersVO) httpSession.getAttribute("user");
-        model.addAttribute("list", apiService.list(cri));
+    public String go(Criteria cri, Model model,HttpSession session,SubscrVo subscrVo) throws Exception {
+        UsersVO list = (UsersVO) session.getAttribute("user");
+        if (list == null) {
+            model.addAttribute("msg","로그인 후 이용가능합니다.");
+            model.addAttribute("url","/");
+            return "alert";
+        }
+        String userId = list.getUserId();
+        SubscrVo subinfo = subscribeService.getSubscrView(userId);
+        log.info("bbbbb");
+        log.info(subinfo);
 
+
+        if(subinfo == null){
+            model.addAttribute("msg","구독신청 후 이용가능합니다.");
+            model.addAttribute("url","/");
+            return "alert";
+        }
+
+        model.addAttribute("list", apiService.list(cri));
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
         pageMaker.setTotalCount(apiService.listCount());
@@ -71,7 +70,25 @@ public class ApiController {
     }
 
     @GetMapping("/api/searchList2")
-    public String getSearchList(@RequestParam("keyword") String keyword, @RequestParam("type") String type, Model model) throws Exception {
+    public String getSearchList(@RequestParam("keyword") String keyword, @RequestParam("type") String type, HttpSession session, Model model) throws Exception {
+        UsersVO list = (UsersVO) session.getAttribute("user");
+        if (list == null) {
+            model.addAttribute("msg","로그인 후 이용가능합니다.");
+            model.addAttribute("url","/");
+            return "alert";
+        }
+
+            String userId = list.getUserId();
+            SubscrVo subinfo = subscribeService.getSubscrView(userId);
+            log.info("bbbbb");
+            log.info(subinfo);
+
+        if(subinfo == null){
+            model.addAttribute("msg","구독신청 후 이용가능합니다.");
+            model.addAttribute("url","/");
+            return "alert";
+        }
+
         String resultString = naverBookSearch.search(keyword);
         List<ApiDTO> bookinfo = naverBookSearch.fromJSONtoItems(resultString);
         for (int i = 0; i < bookinfo.size(); i++) {

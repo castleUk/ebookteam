@@ -98,43 +98,6 @@
                             </ul>
                         </div>
 					</div>
-					
-					<!-- 목록 -->
-<%--					<div class="list-content">--%>
-<%--						<table class="table">--%>
-<%--		          <thead>--%>
-<%--			          <tr style="display: none">--%>
-<%--			              <th>사진</th>--%>
-<%--			              <th>제목</th>--%>
-<%--			              <th>isbn</th>--%>
-<%--			              <th>저자</th>--%>
-<%--			              <th>출판사</th>--%>
-<%--			              <th style="display:none;">책 설명</th>--%>
-<%--			              <th>상세페이지</th>--%>
-<%--			          </tr>--%>
-<%--		          </thead>--%>
-<%--		          <tbody>--%>
-<%--			          <c:forEach items="${list}" var="list">--%>
-<%--			              <tr onclick="PopupEmpInfo(this)">--%>
-<%--			                  <td><img src="${list.image}" width="230" height="270" class="card-img-top"--%>
-<%--			                           alt="..."></td>--%>
-<%--			                  <td>${list.title}</td>--%>
-<%--			                  <td>${list.isbn}</td>--%>
-<%--			                  <td>${list.author}</td>--%>
-<%--			                  <td>${list.publisher}</td>--%>
-<%--			                  <td style="display:none" ;>${list.description}</td>--%>
-<%--			                  <td>--%>
-<%--			                      <button class="view" data-toggle="modal" data-target="#bookDetail">상세보기</button>--%>
-<%--			                  </td>--%>
-<%--			              </tr>--%>
-<%--			          </c:forEach>--%>
-<%--		          </tbody>--%>
-<%--		          <tfoot>--%>
-<%--		          	<td colspan="5" class="tablefoot"></td>--%>
-<%--		          </tfoot>--%>
-<%--	      		</table>--%>
-<%--      		</div>--%>
-					<!-- 목록 -->
         </div>   
 			</div>
 		</div>
@@ -215,6 +178,8 @@
         document.getElementById("book_publisher").innerHTML = row_td[4].innerHTML;
         document.getElementById("book_description").innerHTML = row_td[5].innerHTML;
     }
+
+
     //==============================================================================
     // var close = document.getElementById('modalClose')
     // close.addEventListener("click", close_modal)
@@ -222,22 +187,17 @@
     //     $('#bookDetail').modal('hide')
     // }
     //=====================================================================
-    var gobook = document.getElementById('gobook')
-    gobook.addEventListener("click", go_book)
-    function go_book(event) {
-        var isbn = $('#book_isbn').text()
-        console.log(isbn)
-        $.ajax({
-            url: "/book/libinsert",
-            method: "post",
-            data: {"isbn": isbn},
-            success: function (data) {
-                alert("전송성공");
-            },
-            error: function (error) {
-                alert("전송실패!");
-            }
-        });
-    }
+    // var gobook = document.getElementById('gobook')
+    // gobook.addEventListener("click", go_book)
+    // function go_book(event) {
+    //     var isbn = $('#book_isbn').text()
+    //     console.log(isbn)
+    //     $.ajax({
+    //         url: "/book/libinsert",
+    //         method: "post",
+    //         data: {"isbn": isbn},
+    //     });
+
+    // }
 </script>
 </html>

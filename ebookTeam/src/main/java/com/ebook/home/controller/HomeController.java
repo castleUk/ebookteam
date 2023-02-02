@@ -32,7 +32,6 @@ public class HomeController {
 		List<MenuVo> boardMenu = menuService.getBoardMenu();
 		List<MenuVo> myMenu = menuService.getMyMenu();
 		List<ApiDTO> random = apiService.getRandomList(apiDTO);
-		log.info(random.get(0).getImage());
 		log.info("=====================================");
 		mv.addObject("random",random);
 		mv.addObject("boardMenu", boardMenu);

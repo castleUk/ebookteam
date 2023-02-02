@@ -11,7 +11,7 @@
         
       <ul class="nav ml-auto">
             <li class="item-link"><a class="link" href="/user/update">${sessionScope.user.userId}</a></li>
-    		<li class="item-link"><a class="link" href="/board/list?postCategory=notice">새소식</a></li>
+    		<li class="item-link"><a class="link" href="/board/list?postCategory=notice&nowPage=1&pageCount=10&pageGrpNum=1"">새소식</a></li>
     		
     		<c:choose>
         	<c:when test="${sessionScope.user.userId=='admin2'}">
@@ -45,7 +45,7 @@
                  <c:forEach var="board" items="${boardMenu}">
                      <li class="link-item">
                          <a class="link"
-                            href="/board/list?postCategory=${board.postCategory}">${board.menu_name}</a>
+                            href="/board/list?postCategory=${board.postCategory}&nowPage=1&pageCount=10&pageGrpNum=1">${board.menu_name}</a>
                      </li>
                  </c:forEach>
              </ul>

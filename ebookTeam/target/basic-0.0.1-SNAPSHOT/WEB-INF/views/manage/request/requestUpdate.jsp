@@ -31,6 +31,8 @@
 						</div>
 						<div class="content-body">
 							<form class="form-table" action="/manage/request/update" method="POST">
+								<input type="hidden" name="req_key" value="${request.req_key}"/>
+								<input type="hidden" id="req_process" name="req_process" value="${request.req_process}"/>
 								<table class="table">
 									<tr>
 										<th>번호</th>
@@ -54,7 +56,14 @@
 									</tr>
 									<tr>
 										<th>진행사항</th>
-										<td><input type="text" name="req_process" value="${request.req_process}"/></td>
+										<%-- <td><input type="text" name="req_process" value="${request.req_process}"/></td> --%>
+										<td>
+											<select name="request-s" id="request-s" onchange="chageSelect(this.value);">
+												<option value="one">요청</option>
+												<option value="two">승인</option>
+												<option value="three">거절</option>
+											</select>
+										</td>
 									</tr>
 								</table>
 							
@@ -69,5 +78,23 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		function chageSelect(value) {
+			var result = null;
+			if(value == "one") {
+				result = "요청";
+			}
+			
+			if(value == "two") {
+				result = "승인";
+			}
+			
+			if(value == "three") {
+				result = "거절";
+			}
+			
+			document.getElementById("req_process").value = result;
+		}
+	</script>
 </body>
 </html>

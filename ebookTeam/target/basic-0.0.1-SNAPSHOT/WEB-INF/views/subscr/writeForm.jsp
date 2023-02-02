@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <th>카드 비밀번호</th>
-                                <td><input type="number" name="cardPw" placeholder="카드 비밀번호" maxlength="4" oninput="maxLengthnum(this)" required/></td>
+                                <td><input type="password" name="cardPw" placeholder="카드 비밀번호" maxlength="4" oninput="maxLengthnum(this)" required/></td>
                             </tr>
                         </table>
 

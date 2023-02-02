@@ -30,6 +30,14 @@ public class UsersVO {
     private LocalDateTime subDate;
     private LocalDateTime exDate;
 
+    public String getUserIdx() {
+        return userIdx;
+    }
+
+    public void setUserIdx(String userIdx) {
+        this.userIdx = userIdx;
+    }
+
     public String getUserId() {
         return userId;
     }
